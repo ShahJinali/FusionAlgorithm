@@ -1,8 +1,3 @@
-//
-// Created by jerem on 2019-10-24.
-//
+#include <stdio.h>
 
-#ifndef FUSIONALGORITHM_SENSOR_FUSION_ALGORITHM_H
-#define FUSIONALGORITHM_SENSOR_FUSION_ALGORITHM_H
-
-#endif //FUSIONALGORITHM_SENSOR_FUSION_ALGORITHM_H
+double sensorfusion(double *sensor_values,int no_sensors);
