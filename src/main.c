@@ -40,6 +40,7 @@ int main() {
     fseek(fptr,0,0);
     /*
      * Initialize the sensor_data,sensor_time,sensor_name dynamic array
+     * The size of array is equal to the length of line read from file
      */
     sensor_data=(double *)malloc(loop_counter * sizeof(double));
     sensor_name=(char **) malloc(loop_counter * sizeof(char));
@@ -55,6 +56,9 @@ int main() {
     else
         printf("Failure\n");
 
+    /*
+     * Printing the data obtained after parsing file
+     */
     for(int i=0;i<loop_counter;i++){
         printf(" %s %s %lf \n",sensor_time[i],sensor_name[i],sensor_data[i]);
     }
