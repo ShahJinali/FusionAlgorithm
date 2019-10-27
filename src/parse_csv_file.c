@@ -5,7 +5,7 @@
 
 /**
  * @author:Jinali Shah
- * @version:1.2
+ * @version:1.1
  * @Date :2019/10/27
  * @param fptr
  * @param sensor
@@ -19,6 +19,18 @@ int parseFile(FILE *fptr, struct sensor_t *sensor) {
     int sensor_name_counter = 1;
     int sensor_time_counter = 1;
 
+    /*
+     * The file pointer points to sample.csv file  and cursor is set at the beginning of file.
+     * Outer while loop will read one line of file in each iteration.
+     * fgets(line, 1024, fptr) reads one line of file at each iteration.
+     * For each iteration , it will store the time,name and data of sensor in struct sensor_t *sensor.
+     * To split the line , strtok() string tokenizer function is used which takes 2 parameter i.e the line itself and delimeter.
+     * In total there will be 3 tokens for each line i.e. time,name and data but at a time only one token is read.
+     * So, inner while is used for getting each token from a line.
+     * To store the token in respective data type of struct, 3 internal counters are used.
+     * After ,all the tokens are read from line, the internal counters are reset.
+     * Loop counter is incremented and next line is read.
+     */
     while (fgets(line, 1024, fptr)) {
 
         token = strtok(line, ",");
