@@ -1,66 +1,48 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <parse_csv_file.h>
 
 /**
- * @author:Jinali SHah
- * @version:1.0
- * @date : 2019/10/25
+ * @author : Jinali Shah
+ * @version:1.2
+ * @date :2019/10/27
  * @return
  */
+//create the pointer of structure whose size is equal to no of lines in .csv file
 int main() {
-    char ** sensor_name;
-    char ** sensor_time;
-    double * sensor_data;
-    FILE * fptr;
+
+    struct sensor_t *sensor;
+    FILE *fptr;
     char line[1024];
-    int loop_counter=0;
-    int result_ParseCSVFile;
-    /*
-     * Initialize file pointer
-     */
-    fptr=fopen("../sample.csv","r");
-    if(fptr == NULL){
-        printf("File pointer is not initialized");
-        return -1;
+    int line_counter = 0;
+    int result;
+    fptr = fopen("../sample.csv", "r");
+
+    //read line and increment counter for each line read
+    while (fgets(line, 1024, fptr)) {
+        line_counter++;
     }
 
-    /*
-     * Read the line to get the no of line and initialize the dynamic array for sensor_name,sensor_time,sensor_data
-     */
-    while(fgets(line,1024,fptr)){
-        loop_counter++;
-    }
-    printf("The total no of lines is %d\n", loop_counter);
+    //set the cursor to the beginning of file
+    fseek(fptr, 0, 0);
 
-    /*
-     * Set the pointer to the beginning of file
-     */
-    fseek(fptr,0,0);
-    /*
-     * Initialize the sensor_data,sensor_time,sensor_name dynamic array
-     * The size of array is equal to the length of line read from file
-     */
-    sensor_data=(double *)malloc(loop_counter * sizeof(double));
-    sensor_name=(char **) malloc(loop_counter * sizeof(char));
-    sensor_time=(char **)malloc(loop_counter * sizeof(char));
+    //initialize the dynamic array of  structure sensor_t  sensor
+    sensor = (struct sensor_t *) malloc(line_counter * sizeof(struct sensor_t));
 
-    /*
-     * call the parseFile method and pass the parameter
-     */
-    result_ParseCSVFile=parseFile(fptr,sensor_time,sensor_name,sensor_data);
-
-    if(result_ParseCSVFile == 1)
-        printf("Success\n");
+    //call the parseFile function
+    result = parseFile(fptr, sensor);
+    if (result == 1)
+        printf("success");
     else
-        printf("Failure\n");
+        printf("failure");
 
-    /*
-     * Printing the data obtained after parsing file
-     */
-    for(int i=0;i<loop_counter;i++){
-        printf(" %s %s %lf \n",sensor_time[i],sensor_name[i],sensor_data[i]);
+    //print the parse data
+    for (int i = 0; i < line_counter; i++) {
+        printf("The time is %s ", (sensor + i)->time);
+        printf("The name is %s ", (sensor + i)->name);
+        printf("The data is %lf ", (sensor + i)->data);
+        printf("\n");
     }
+    printf("Hello, World!\n");
     return 0;
 }

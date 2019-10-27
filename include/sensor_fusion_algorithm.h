@@ -1,3 +1,4 @@
 #include <stdio.h>
+#include <sensor_structure.h>
 
-double sensorfusion(double *sensor_values,int no_sensors);
+double sensorfusion(struct sensor_t *sensor,int no_sensors);
