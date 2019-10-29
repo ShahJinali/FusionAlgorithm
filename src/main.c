@@ -58,9 +58,9 @@ int main() {
      * If function returns 1 then the file is parse successfully.
      */
     if (result == 1)
-        printf("success");
+        printf("success\n");
     else
-        printf("failure");
+        printf("failure\n");
 
     /*
      * print the parse data
@@ -71,5 +71,6 @@ int main() {
         printf("The data is %lf ", (sensor + i)->data);
         printf("\n");
     }
+
     return 0;
 }
