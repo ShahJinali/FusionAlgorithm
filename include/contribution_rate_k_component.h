@@ -1,3 +1,3 @@
 #include <stdio.h>
 
-double *contributionKrate(double **eigen_value,int no_sensor);
+double *compute_contribution_K_rate(double *p_eigen_value,int no_sensor);

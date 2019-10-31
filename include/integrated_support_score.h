@@ -1,3 +1,3 @@
 #include <stdio.h>
 
-double *integratedscore(double * new_alpha_value,double *new_y_value);
+double *compute_integrated_score(double *p_new_alpha,double **pp_new_y_value);

@@ -1,4 +1,4 @@
 #include <stdio.h>
 #include <sensor_structure.h>
 
-double **supportdegreematrix(struct sensor_t *sensor,int no_sensor);
+double **compute_support_degree_matrix(sensor_t *p_sensor,int no_sensor);

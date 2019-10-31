@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <parse_csv_file.h>
+#include <input_output_csv.h>
 
 /**
  * @author : Jinali Shah
@@ -12,48 +12,48 @@
 
 int main() {
 
-    struct sensor_t *sensor;
+    sensor_t *p_sensor;
     /**
         This is the pointer to file sample.csv.The file sample.csv is open in read mode
      */
-    FILE *fptr;
+    FILE *p_fptr;
     char line[1024];
     int line_counter = 0;
     int result;
-    fptr = fopen("../sample.csv", "r");
+    p_fptr = fopen("../sample.csv", "r");
 
     /**
      * If file is not found in specified path ,then it will return -1 and exit the program
      */
-    if (fptr == NULL) {
+    if (p_fptr == NULL) {
         printf("The file pointer is not initialize");
         return -1;
     }
     /*
     * This loop is used to read the number of lines of file.So it can be further used to initialize the dynamic
-     * array of struct sensor_t *sensor
+     * array of sensor_t *p_sensor
     */
-    while (fgets(line, 1024, fptr)) {
+    while (fgets(line, 1024, p_fptr)) {
         line_counter++;
     }
 
     /*
      * Set the cursor at the beginning of file
      */
-    fseek(fptr, 0, 0);
+    fseek(p_fptr, 0, 0);
 
     /*
-     *Initialize the dynamic array of struct sensor_t and it's length is equal to no of line read from file i.e. line_counters
+     *Initialize the dynamic array of sensor_t and it's length is equal to no of line read from file i.e. line_counters
      */
-    sensor = (struct sensor_t *) malloc(line_counter * sizeof(struct sensor_t));
+    p_sensor = (sensor_t *) malloc(line_counter * sizeof(sensor_t));
 
     /**
-     * @param fptr
-     * @param sensor
+     * @param p_fptr
+     * @param p_sensor
      * @return
      * <p>This function parse the csv file</p>
      */
-    result = parseFile(fptr, sensor);
+    result = read_csv(p_fptr, p_sensor);
     /*
      * If function returns 1 then the file is parse successfully.
      */
@@ -66,9 +66,9 @@ int main() {
      * print the parse data
      */
     for (int i = 0; i < line_counter; i++) {
-        printf("The time is %s ", (sensor + i)->time);
-        printf("The name is %s ", (sensor + i)->name);
-        printf("The data is %lf ", (sensor + i)->data);
+        printf("The time is %s ", (p_sensor + i)->time);
+        printf("The name is %s ", (p_sensor + i)->name);
+        printf("The data is %lf ", (p_sensor + i)->data);
         printf("\n");
     }
     return 0;
