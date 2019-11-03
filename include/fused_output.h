@@ -1,3 +1,4 @@
 #include <stdio.h>
+#include "sensor_structure.h"
 
-double fusedoutput(double *weight,double *sensor_data,int no_sensor);
+double fused_output(double *p_weight,sensor_t *p_sensor,int no_sensor);

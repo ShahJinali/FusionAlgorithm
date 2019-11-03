@@ -1,3 +1,3 @@
 #include <stdio.h>
 
-double **eigenvector(double **eigen_value, int no_sensor);
+double **compute_eigen_vector(double *p_eigen_value, int no_sensor);

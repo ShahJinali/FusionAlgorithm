@@ -1,3 +1,3 @@
 #include <stdio.h>
 
-double *principalcomponent(double ** eigen_value,double** eigen_vector,int no_sensor);
+double **compute_principal_component(double **pp_D,double **pp_eigen_vector,int no_sensor);
