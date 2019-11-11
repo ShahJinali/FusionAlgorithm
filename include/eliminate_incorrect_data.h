@@ -1,3 +1,7 @@
+#ifndef FUSIONALGORITHM_ELIMINATE_INCORRECT_DATA_H
+#define FUSIONALGORITHM_ELIMINATE_INCORRECT_DATA_H
 #include <stdio.h>
 
 double *eliminate_data(double *p_Z,int no_sensor);
+
+#endif //FUSIONALGORITHM_ELIMINATE_INCORRECT_DATA_H

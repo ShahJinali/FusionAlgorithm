@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <input_output_csv.h>
+#include <sensor_fusion_algorithm.h>
 
 /**
  * @author : Jinali Shah
@@ -58,18 +59,21 @@ int main() {
      * If function returns 1 then the file is parse successfully.
      */
     if (result == 1)
-        printf("success");
+        printf("success\n");
     else
-        printf("failure");
+        printf("failure\n");
 
     /*
      * print the parse data
      */
-    for (int i = 0; i < line_counter; i++) {
-        printf("The time is %s ", (p_sensor + i)->time);
-        printf("The name is %s ", (p_sensor + i)->name);
-        printf("The data is %lf ", (p_sensor + i)->data);
-        printf("\n");
-    }
-    return 0;
+//    for (int i = 0; i < line_counter; i++) {
+//        printf("The time is %s ", (p_sensor + i)->time);
+//        printf("The name is %s ", (p_sensor + i)->name);
+//        printf("The data is %lf ", (p_sensor + i)->data);
+//        printf("\n");
+//    }
+//    printf("%d\n",line_counter);
+
+//call sensor fusion algorithm
+sensor_fusion(p_sensor,line_counter);
 }

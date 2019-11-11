@@ -1,3 +1,7 @@
+#ifndef FUSIONALGORITHM_WEIGHT_COEFFICIENT_SENSOR_H
+#define FUSIONALGORITHM_WEIGHT_COEFFICIENT_SENSOR_H
 #include <stdio.h>
 
 double *weight_coefficient( double *p_Z ,int no_sensor);
+
+#endif //FUSIONALGORITHM_WEIGHT_COEFFICIENT_SENSOR_H
