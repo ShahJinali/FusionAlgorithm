@@ -5,10 +5,11 @@
 double sensor_fusion(sensor_t *p_sensor,int no_sensor){
 
     double **D_array;
+    //Call Step1 of Algorithm
     D_array=compute_support_degree_matrix(p_sensor,no_sensor);
 
     //print no of sensor
-    printf("%d\n",no_sensor);
+    //printf("%d\n",no_sensor);
 
     //printing the 2D array
     for(int rows=0;rows<no_sensor;rows++){
