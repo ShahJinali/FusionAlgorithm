@@ -18,6 +18,5 @@ double sensor_fusion(sensor_t *p_sensor,int no_sensor){
         }
         printf("\n");
     }
-
     return 20;
 }
