@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <input_output_csv.h>
 #include <sensor_fusion_algorithm.h>
-
+#include <unique_value.h>
 /**
  * @author : Jinali Shah
  * @version:1.1
@@ -14,6 +14,7 @@
 int main() {
 
     sensor_t *p_sensor;
+    char **unique_time;
     /**
         This is the pointer to file sample.csv.The file sample.csv is open in read mode
      */
@@ -74,6 +75,17 @@ int main() {
 //    }
 //    printf("%d\n",line_counter);
 
-//call sensor fusion algorithm
-sensor_fusion(p_sensor,line_counter);
+    //call sensor fusion algorithm
+    sensor_fusion(p_sensor,line_counter);
+
+    //get the unique value of time
+    unique_time=strunique(p_sensor);
+    int length_unique_time=struniquelen(p_sensor);
+
+    printf("%d\n",length_unique_time);
+    for(int i=0;i<length_unique_time;i++){
+        printf("%s\n",unique_time[i]);
+    }
+
+
 }
