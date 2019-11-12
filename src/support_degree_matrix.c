@@ -10,14 +10,14 @@
 //Step1 of algorithm
 double **compute_support_degree_matrix(sensor_t *p_sensor,int no_sensor){
     //Declare dynamic 2D array
-    double **D_array;
+    double **pp_D_array;
 
     //Allocating memory for rows=no_sensor
-    D_array=(double **)malloc(sizeof(double *) * no_sensor);
+    pp_D_array=(double **)malloc(sizeof(double *) * no_sensor);
 
     //Allocating memory for columns in each row
     for(int rows=0;rows<no_sensor;rows++){
-        D_array[rows]= (double *)malloc(sizeof(double) * no_sensor);
+        pp_D_array[rows]= (double *)malloc(sizeof(double) * no_sensor);
     }
 
     /*
@@ -29,9 +29,9 @@ double **compute_support_degree_matrix(sensor_t *p_sensor,int no_sensor){
     for(int rows=0;rows<no_sensor;rows++){
         for(int cols=0;cols<no_sensor;cols++){
             double temp_data=((p_sensor+rows)->data)-((p_sensor+cols)->data);
-            D_array[rows][cols]=exp(-fabs(temp_data));
+            pp_D_array[rows][cols]=exp(-fabs(temp_data));
         }
     }
 
-    return D_array;
+    return pp_D_array;
 }
