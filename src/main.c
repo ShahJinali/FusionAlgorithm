@@ -76,10 +76,10 @@ int main() {
 //        printf("The data is %lf ", (p_sensor + i)->data);
 //        printf("\n");
 //    }
-//    printf("%d\n",line_counter);
+   printf("Line Counter%d\n",line_counter);
 
     //call sensor fusion algorithm
-    sensor_fusion(p_sensor,line_counter);
+    double d=sensor_fusion(p_sensor,line_counter);
 
     //get the unique value of time and store it in unique_time char array
     unique_time=struniquetime(p_sensor);
@@ -93,5 +93,5 @@ int main() {
     for(int i=0;i<length_unique_time;i++){
         printf("%s\n",unique_time[i]);
     }
-
+    return 0;
 }

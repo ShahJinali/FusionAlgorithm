@@ -69,7 +69,7 @@ int struniquelen(sensor_t *p_sensor){
     strcpy(unique_time[0],(p_sensor+0)->time);
 
     //For each time of p_sensor structure
-    for(int i=0;i<6;i++){
+    for(int i=0;i<line_counter;i++){
         int result=strcontain((p_sensor+i)->time,unique_time,length_unique_time);
         //1 means true and 0 means false
         if(result == 0){
