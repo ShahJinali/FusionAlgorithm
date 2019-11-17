@@ -72,14 +72,14 @@ int main() {
     //call sensor fusion algorithm
     sensor_fusion(p_sensor,line_counter);
 
-//    //get the unique value of time and store it in unique_time char array
-//    unique_time=struniquetime(p_sensor);
-//    //get the no of unique value
-//    int length_unique_time=struniquelen(p_sensor);
-//
-//    /*
-//     * Print the length of unique_time and data of unique_time
-//     */
+    //get the unique value of time and store it in unique_time char array
+    unique_time=struniquetime(p_sensor);
+    //get the no of unique value
+    int length_unique_time=struniquelen(p_sensor);
+
+    /*
+     * Print the length of unique_time and data of unique_time
+     */
 //    printf("%d\n",length_unique_time);
 //    for(int i=0;i<length_unique_time;i++){
 //        printf("%s\n",unique_time[i]);
