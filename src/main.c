@@ -67,31 +67,22 @@ int main() {
     else
         printf("failure\n");
 
-    /*
-     * print the parse data
-     */
-//    for (int i = 0; i < line_counter; i++) {
-//        printf("The time is %s ", (p_sensor + i)->time);
-//        printf("The name is %s ", (p_sensor + i)->name);
-//        printf("The data is %lf ", (p_sensor + i)->data);
-//        printf("\n");
-//    }
    printf("Line Counter%d\n",line_counter);
 
     //call sensor fusion algorithm
-    double d=sensor_fusion(p_sensor,line_counter);
+    sensor_fusion(p_sensor,line_counter);
 
-    //get the unique value of time and store it in unique_time char array
-    unique_time=struniquetime(p_sensor);
-    //get the no of unique value
-    int length_unique_time=struniquelen(p_sensor);
-
-    /*
-     * Print the length of unique_time and data of unique_time
-     */
-    printf("%d\n",length_unique_time);
-    for(int i=0;i<length_unique_time;i++){
-        printf("%s\n",unique_time[i]);
-    }
+//    //get the unique value of time and store it in unique_time char array
+//    unique_time=struniquetime(p_sensor);
+//    //get the no of unique value
+//    int length_unique_time=struniquelen(p_sensor);
+//
+//    /*
+//     * Print the length of unique_time and data of unique_time
+//     */
+//    printf("%d\n",length_unique_time);
+//    for(int i=0;i<length_unique_time;i++){
+//        printf("%s\n",unique_time[i]);
+//    }
     return 0;
 }
