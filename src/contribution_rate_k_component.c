@@ -12,8 +12,6 @@ double *compute_contribution_K_rate(double *p_eigen_value,int no_sensor){
         for(int i=0;i<no_sensor;i++){
             sum_eigen_value=sum_eigen_value+p_eigen_value[i];
         }
-
-
     /*
      * Step2 Compute alpha value
      */
