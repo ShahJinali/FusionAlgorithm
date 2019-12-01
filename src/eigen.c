@@ -50,8 +50,9 @@ void compute_eigen(double **pp_D_aaray, double *p_eigen_val,double **pp_eigen_ve
 
     /*
      * Step8 Arrange it in ascending order
+     * change here
      */
-    gsl_eigen_symmv_sort (p_eval, p_evec,GSL_EIGEN_SORT_ABS_ASC);
+    gsl_eigen_symmv_sort (p_eval, p_evec,GSL_EIGEN_SORT_ABS_DESC);
 
     /*
      *Step9 Assign the compute eval and evec to p_eigen_val,p_eigen_vec
@@ -62,6 +63,7 @@ void compute_eigen(double **pp_D_aaray, double *p_eigen_val,double **pp_eigen_ve
         p_eigen_val[rows]= gsl_vector_get (p_eval, rows);
 
         //For getting the eigen vector and arrange it in row form instead of column form
+        //change here if anything wrong
         for(int cols=0;cols<no_sensor;cols++){
             pp_eigen_vec[rows][cols]=gsl_matrix_get(p_evec, cols, rows);
         }
