@@ -18,8 +18,10 @@ int compute_contribution_M_rate(double *p_alpha_value,int no_sensor,double p){
         p_m_rate[i]=sum;
     }
 
-    //return only first p_m_rate value such p_m_rate >p
-    for(int i=0;i<no_sensor;i++){
+    /*
+     * Return only first p_m_rate value such p_m_rate >p
+    */
+     for(int i=0;i<no_sensor;i++){
         if(p_m_rate[i] > p){
             m=i+1;
             break;
