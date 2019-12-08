@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <input_output_csv.h>
-
+#include <sensor_fusion_algorithm.h>
+#include <unique_value.h>
 /**
  * @author : Jinali Shah
  * @version:1.1
@@ -9,16 +10,20 @@
  * @return
  *  <p>This is main function and executable file will run this function</p>
  */
-
+/*
+ * Declare as global variable in main.c and initialize here and it is used as extern int line_counter in other files
+ */
+int line_counter;
 int main() {
 
     sensor_t *p_sensor;
+    char **unique_time;
     /**
         This is the pointer to file sample.csv.The file sample.csv is open in read mode
      */
     FILE *p_fptr;
     char line[1024];
-    int line_counter = 0;
+    line_counter = 0;
     int result;
     p_fptr = fopen("../sample.csv", "r");
 
@@ -58,18 +63,26 @@ int main() {
      * If function returns 1 then the file is parse successfully.
      */
     if (result == 1)
-        printf("success");
+        printf("success\n");
     else
-        printf("failure");
+        printf("failure\n");
+
+   printf("Line Counter%d\n",line_counter);
+
+    //call sensor fusion algorithm
+    sensor_fusion(p_sensor,line_counter);
+
+    //get the unique value of time and store it in unique_time char array
+    unique_time=struniquetime(p_sensor);
+    //get the no of unique value
+    int length_unique_time=struniquelen(p_sensor);
 
     /*
-     * print the parse data
+     * Print the length of unique_time and data of unique_time
      */
-    for (int i = 0; i < line_counter; i++) {
-        printf("The time is %s ", (p_sensor + i)->time);
-        printf("The name is %s ", (p_sensor + i)->name);
-        printf("The data is %lf ", (p_sensor + i)->data);
-        printf("\n");
-    }
+//    printf("%d\n",length_unique_time);
+//    for(int i=0;i<length_unique_time;i++){
+//        printf("%s\n",unique_time[i]);
+//    }
     return 0;
 }
