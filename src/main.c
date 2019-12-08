@@ -18,6 +18,12 @@ int main() {
 
     sensor_t *p_sensor;
     char **unique_time;
+    //Allocating memory of one word initially
+    unique_time=(char **)malloc(sizeof(char *) * 1);
+
+    //Allocating memory of one word = 6 characters
+    unique_time[0]=(char *)malloc(sizeof(char) * 6);
+
     /**
         This is the pointer to file sample.csv.The file sample.csv is open in read mode
      */
@@ -25,7 +31,7 @@ int main() {
     char line[1024];
     line_counter = 0;
     int result;
-    p_fptr = fopen("../sample.csv", "r");
+    p_fptr = fopen("../data/sample.csv", "r");
 
     /**
      * If file is not found in specified path ,then it will return -1 and exit the program
@@ -70,19 +76,17 @@ int main() {
    printf("Line Counter%d\n",line_counter);
 
     //call sensor fusion algorithm
-    sensor_fusion(p_sensor,line_counter);
+    //sensor_fusion(p_sensor,line_counter);
 
     //get the unique value of time and store it in unique_time char array
-    unique_time=struniquetime(p_sensor);
-    //get the no of unique value
-    int length_unique_time=struniquelen(p_sensor);
+    int length_unique_time=struniquetime(p_sensor,unique_time);
 
     /*
      * Print the length of unique_time and data of unique_time
      */
-//    printf("%d\n",length_unique_time);
-//    for(int i=0;i<length_unique_time;i++){
-//        printf("%s\n",unique_time[i]);
-//    }
+    printf("%d\n",length_unique_time);
+    for(int i=0;i<length_unique_time;i++){
+        printf("%s\n",unique_time[i]);
+    }
     return 0;
 }

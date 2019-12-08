@@ -3,7 +3,5 @@
 
 #include <sensor_structure.h>
 
-char** struniquetime(sensor_t *p_sensor);
-int struniquelen(sensor_t *p_sensor);
-
+int struniquetime(sensor_t *p_sensor,char **unique_time);
 #endif //FUSIONALGORITHM_UNIQUE_VALUE_H

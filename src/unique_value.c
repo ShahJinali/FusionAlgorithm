@@ -11,22 +11,16 @@ int strcontain(char *time,char **unique_time,int length_unique_time);
  * @param p_sensor
  * @return
  */
-char** struniquetime(sensor_t *p_sensor){
+int struniquetime(sensor_t *p_sensor,char ** unique_time){
 
     //Declare the 2D array unique_time to store multiple unique strings
-    char **unique_time;
+    //char **unique_time;
 
     /*
      *Declare the variable to store the length of 2D unique_time array
      * It is initialize to 1 because there will be at least one unique value and it increases as we find the another unique value
      */
     int length_unique_time=1;
-
-    //Allocating memory of one word initially
-    unique_time=(char **)malloc(sizeof(char *) * 1);
-
-    //Allocating memory of one word = 6 characters
-    unique_time[0]=(char *)malloc(sizeof(char) * 6);
 
     //There will at least one unique string so 1st string is copied .
     strcpy(unique_time[0],(p_sensor+0)->time);
@@ -40,35 +34,6 @@ char** struniquetime(sensor_t *p_sensor){
      * The strcontain() function return 1 if time value is present in unique_time
      * It return 0 if time value is not present in unique_time (which also means that time value is unique so add it in unique_time array)
      */
-    for(int i=0;i<line_counter;i++){
-        int result=strcontain((p_sensor+i)->time,unique_time,length_unique_time);
-        //1 means true and 0 means false
-        if(result == 0){
-            unique_time=(char **)realloc(unique_time,sizeof(char *) * 1);
-            unique_time[length_unique_time]=(char *)malloc(sizeof(char) * 6);
-            strcpy(unique_time[length_unique_time],(p_sensor+i)->time);
-            length_unique_time++;
-        }
-    }
-    return unique_time;
-}
-
-/*
- * This function struniquelen() returns the total no of unique value of time
- */
-int struniquelen(sensor_t *p_sensor){
-
-    char **unique_time;
-    int length_unique_time=1;
-    //Allocating memory of one word initially
-    unique_time=(char **)malloc(sizeof(char *) * 1);
-
-    //Allocating memory of one word = 6 characters
-    unique_time[0]=(char *)malloc(sizeof(char) * 6);
-
-    strcpy(unique_time[0],(p_sensor+0)->time);
-
-    //For each time of p_sensor structure
     for(int i=0;i<line_counter;i++){
         int result=strcontain((p_sensor+i)->time,unique_time,length_unique_time);
         //1 means true and 0 means false
