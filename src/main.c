@@ -150,10 +150,11 @@ int main(int argc,char *argv[]) {
      * Call the validate sensor and fusion algorithm
      */
 //    sensor_fusion(p_sensor,line_counter);
+
     /*
      * Call the stuck sensor algorithm
      */
-        compute_stuck_sensor(p_sensor,p_time_list,interval,5,no_sensor_grp);
+    compute_stuck_sensor(p_sensor,p_time_list,interval,line_counter/no_sensor_grp,no_sensor_grp);
 
     return 0;
 }

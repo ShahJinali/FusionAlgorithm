@@ -7,14 +7,14 @@
 time_tt* get_time_list(sensor_t *p_sensor,int line_counter,int no_sensor_grp){
 
     /*
-     Compute the length of time_list
-     */
+    Compute the length of time_list
+    */
     int length_time_list=line_counter/no_sensor_grp;
 
     time_tt *p_time_list;
     /*
-     Allocate the memory to pointer of type time_tt which is equal to no of unique time in csv file
-     */
+    Allocate the memory to pointer of type time_tt which is equal to no of unique time in csv file
+    */
     p_time_list=(time_tt *)malloc(sizeof(time_tt) * length_time_list);
 
     char sensor_time[6];
@@ -26,10 +26,10 @@ time_tt* get_time_list(sensor_t *p_sensor,int line_counter,int no_sensor_grp){
     }
     return p_time_list;
 }
+
 /*
  * This function parses the string of type "1:20" and assign it to ype time_tt struct and also convert it into int value
  */
-
 time_tt time_parse(char time[6],time_tt time1){
     char *token;
     char time_arr[6];

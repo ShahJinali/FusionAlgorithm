@@ -6,6 +6,17 @@
 time_tt time_diff(time_tt curr_time,time_tt next_time);
 
 void compute_stuck_sensor(sensor_t *p_sensor,time_tt *p_time_list,time_tt interval,int time_list_length,int no_sensor_grp){
+
+    FILE *fptr;
+    /*
+     Open the file in write mode
+     The file is generated in data/stuck_sensor.txt
+     */
+    fptr=fopen("../data/stuck_sensor.txt","w");
+    if(fptr == NULL){
+        printf("Error in creating the file");
+    }
+
     int sensor_counter=0;
 
     for(int i=1;i<time_list_length;i++) {
@@ -13,18 +24,29 @@ void compute_stuck_sensor(sensor_t *p_sensor,time_tt *p_time_list,time_tt interv
         time_tt next_time=p_time_list[i];
         time_tt diff=time_diff(curr_time,next_time);
 
-        if((diff.tm_hour == interval.tm_hour) && (diff.tm_min == interval.tm_min)){
-            printf("Inside if\n");
-            for(int j=sensor_counter;j<sensor_counter+no_sensor_grp;j++){
+        fputs("Time =\t",fptr);
+        fprintf(fptr, "%d : %d\t", curr_time.tm_hour,curr_time.tm_min);
+        fputs("Interval =\t",fptr);
+        fprintf(fptr, "%d : %d\n", interval.tm_hour,interval.tm_min);
+        fputs("===================================================\n",fptr);
 
+        if((diff.tm_hour == interval.tm_hour) && (diff.tm_min == interval.tm_min)){
+
+            for(int j=sensor_counter;j<sensor_counter+no_sensor_grp;j++){
                 if((p_sensor+j) ->data == (p_sensor+(j+no_sensor_grp)) ->data){
-                    printf("%s ",(p_sensor+j)->name);
+                    fprintf(fptr," %s %s\n",(p_sensor+j)->name,"stuck");
+                }
+                else{
+                    fprintf(fptr," %s %s\n",(p_sensor+j)->name,"Not stuck");
                 }
             }
         }
-        sensor_counter=sensor_counter+no_sensor_grp;
-        printf("\n");
+        else{
+            fputs("No sensor stuck\n",fptr);
         }
+        sensor_counter=sensor_counter+no_sensor_grp;
+        }
+
 }
 /*
  * Does not consider the next day
