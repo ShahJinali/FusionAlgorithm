@@ -2,7 +2,7 @@
 #define FUSIONALGORITHM_SENSOR_STRUCTURE_H
 typedef struct{
     char time[6];
-    char name[20];
+    char name[10];
     double data;
 }sensor_t;
 
