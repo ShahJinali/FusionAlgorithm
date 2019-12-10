@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <input_output_csv.h>
 #include <sensor_fusion_algorithm.h>
-#include <compute_stuck_sensor.h>
+#include <stuck_sensor.h>
 #include <string.h>
 #include <time_structure.h>
 #include <time_list.h>
@@ -153,7 +153,7 @@ int main(int argc,char *argv[]) {
     /*
      * Call the stuck sensor algorithm
      */
-        stuck_sensor(p_sensor,p_time_list,interval,5,no_sensor_grp);
+        compute_stuck_sensor(p_sensor,p_time_list,interval,5,no_sensor_grp);
 
     return 0;
 }

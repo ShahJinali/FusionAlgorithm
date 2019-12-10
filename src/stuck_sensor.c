@@ -5,7 +5,7 @@
 
 time_tt time_diff(time_tt curr_time,time_tt next_time);
 
-void stuck_sensor(sensor_t *p_sensor,time_tt *p_time_list,time_tt interval,int time_list_length,int no_sensor_grp){
+void compute_stuck_sensor(sensor_t *p_sensor,time_tt *p_time_list,time_tt interval,int time_list_length,int no_sensor_grp){
     int sensor_counter=0;
 
     for(int i=1;i<time_list_length;i++) {
