@@ -1,8 +1,8 @@
 #ifndef FUSIONALGORITHM_STUCK_SENSOR_H
 #define FUSIONALGORITHM_STUCK_SENSOR_H
-#include <stdio.h>
 #include <sensor_structure.h>
+#include <time_structure.h>
 
-char **compute_stuck_sensor(sensor_t *p_sensor);
+void compute_stuck_sensor(sensor_t *p_sensor,time_tt *p_time_list,time_tt interval,int time_list_length,int line_counter);
 
 #endif //FUSIONALGORITHM_STUCK_SENSOR_H
