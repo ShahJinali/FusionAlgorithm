@@ -5,7 +5,7 @@
 #include <stuck_sensor.h>
 #include <string.h>
 #include <time_structure.h>
-#include <time_list.h>
+#include <unique_time.h>
 
 void str_error();
 /**
@@ -24,11 +24,9 @@ void str_error();
  * Order of Arguments to be passed are "name of .csv file,no of sensor in each grp, sensor min range,sensor max range,
  * time interval,parameter p of algorithm, parameter q of algorithm"
  */
-int line_counter;
 int main(int argc,char *argv[]) {
 
     char *name_file;
-    int no_sensor_grp;
     int sensor_min_range;
     int sensor_max_range;
     /*
@@ -42,14 +40,14 @@ int main(int argc,char *argv[]) {
 
     FILE *p_fptr;
     char line[1024];
-    line_counter = 0;
+    int loop_counter=0;
     int result;
     sensor_t *p_sensor;
     char **unique_time;
     char path_prefix[9]="../data/";
     char *file_path;
 
-    if(argc >=1 && argc < 5){
+    if(argc >=1 && argc < 4){
         str_error();
         return -1;
     }
@@ -60,34 +58,28 @@ int main(int argc,char *argv[]) {
         name_file=argv[1];
         file_path=strcat(path_prefix,name_file);
         /*
-         Assuming the argv[2] is the no of sensors in each grp
-         No of sensors must be same
-         */
-        no_sensor_grp=atoi(argv[2]);
-        /*
          Assuming the argv[3] is min range and argv[4] is max range
          */
-        sensor_min_range=atoi(argv[3]);
-        sensor_max_range=atoi(argv[4]);
+        sensor_min_range=atoi(argv[2]);
+        sensor_max_range=atoi(argv[3]);
         /*
          argv[5] , argv[6] and argv[7] is optional ,so If user doesn't specify then it will take the default value.
          */
-        if(argc == 6) {
-            interval = time_parse(argv[5], interval);
+        if(argc == 5) {
+            interval = time_parse(argv[4], interval);
+        }
+        else if (argc == 6) {
+            interval = time_parse(argv[4], interval);
+            q_fault = atof(argv[5]);
         }
         else if (argc == 7) {
-            interval = time_parse(argv[5], interval);
-            q_fault = atof(argv[6]);
-        }
-        else if (argc == 8) {
-            interval = time_parse(argv[5], interval);
-            q_fault = atof(argv[6]);
-            p = atof(argv[7]);
+            interval = time_parse(argv[4], interval);
+            q_fault = atof(argv[5]);
+            p = atof(argv[6]);
         }
 
         printf("%s\n",name_file);
         printf("%s\n",file_path);
-        printf("%d\n",no_sensor_grp);
         printf("%d\n",sensor_min_range);
         printf("%d\n",sensor_max_range);
         printf("%d %d\n",interval.tm_hour,interval.tm_min);
@@ -111,8 +103,9 @@ int main(int argc,char *argv[]) {
      * array of sensor_t *p_sensor
     */
     while (fgets(line, 1024, p_fptr)) {
-        line_counter++;
+        loop_counter++;
     }
+    const int line_counter=loop_counter;
 
     /*
      * Set the cursor at the beginning of file
@@ -142,9 +135,14 @@ int main(int argc,char *argv[]) {
    printf("Line Counter%d\n",line_counter);
 
    /*
+    * Get the length of unique time
+    */
+   int length_unique_time=get_uniquetime_length(p_sensor,line_counter);
+   printf("The length of time list is %d\n",length_unique_time);
+   /*
     Call get_time_list
     */
-    time_tt *p_time_list =  get_time_list(p_sensor,line_counter,no_sensor_grp);
+    time_tt *p_time_list =  get_time_list(p_sensor,line_counter,length_unique_time);
 
     /*
      * Call the validate sensor and fusion algorithm
@@ -154,7 +152,7 @@ int main(int argc,char *argv[]) {
     /*
      * Call the stuck sensor algorithm
      */
-    compute_stuck_sensor(p_sensor,p_time_list,interval,line_counter/no_sensor_grp,no_sensor_grp);
+    compute_stuck_sensor(p_sensor,p_time_list,interval,length_unique_time,line_counter);
 
     return 0;
 }

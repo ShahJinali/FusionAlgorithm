@@ -5,8 +5,9 @@
 
 time_tt time_diff(time_tt curr_time,time_tt next_time);
 
-void compute_stuck_sensor(sensor_t *p_sensor,time_tt *p_time_list,time_tt interval,int time_list_length,int no_sensor_grp){
+void compute_stuck_sensor(sensor_t *p_sensor,time_tt *p_time_list,time_tt interval,int time_list_length,int line_counter){
 
+    int no_sensor_grp=line_counter/time_list_length;
     FILE *fptr;
     /*
      Open the file in write mode
@@ -45,7 +46,20 @@ void compute_stuck_sensor(sensor_t *p_sensor,time_tt *p_time_list,time_tt interv
             fputs("No sensor stuck\n",fptr);
         }
         sensor_counter=sensor_counter+no_sensor_grp;
+        /*
+        This condition is for the last time value
+        Since it is last time value ,it will never get stuck
+        */
+        if(i == time_list_length -1){
+            fputs("Time =\t",fptr);
+            fprintf(fptr, "%d : %d\t", next_time.tm_hour,next_time.tm_min);
+            fputs("Interval =\t",fptr);
+            fprintf(fptr, "%d : %d\n", interval.tm_hour,interval.tm_min);
+            fputs("===================================================\n",fptr);
+            fputs("No sensor stuck\n",fptr);
         }
+
+    }
 
 }
 /*
