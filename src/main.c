@@ -172,6 +172,12 @@ int main(int argc,char *argv[]) {
      */
     compute_stuck_sensor(p_sensor,p_time_list,interval,length_unique_time,line_counter);
 
+    /*
+     * Free the Memory
+     */
+    free(p_fptr);
+    free(p_sensor);
+    free(p_time_list);
     return 0;
 }
 

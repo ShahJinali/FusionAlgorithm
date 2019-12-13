@@ -15,9 +15,7 @@ int read_csv(FILE *p_fptr, sensor_t *p_sensor) {
     char line[1024];
     char *token;
     int counter = 0;
-    int sensor_data_counter = 1;
-    int sensor_name_counter = 1;
-    int sensor_time_counter = 1;
+    int sensor_counter=1;
 
     /*
      * The file pointer points to sample.csv file  and cursor is set at the beginning of file.
@@ -36,23 +34,19 @@ int read_csv(FILE *p_fptr, sensor_t *p_sensor) {
         token = strtok(line, ",");
 
         while (token != NULL) {
-            if (sensor_time_counter == 1) {
+            if (sensor_counter == 1) {
                 strcpy((p_sensor + counter)->time, token);
-            } else if (sensor_name_counter == 2) {
+            } else if (sensor_counter == 2) {
                 strcpy((p_sensor + counter)->name, token);
-            } else if (sensor_data_counter == 3) {
+            } else if (sensor_counter == 3) {
                 (p_sensor + counter)->data = atof(token);
             }
             token = strtok(NULL, ",");
-            sensor_time_counter++;
-            sensor_data_counter++;
-            sensor_name_counter++;
+            sensor_counter++;
         }
         counter++;
         //reset the counter
-        sensor_name_counter = 1;
-        sensor_data_counter = 1;
-        sensor_time_counter = 1;
+        sensor_counter = 1;
     }
 
     return 1;
