@@ -6,6 +6,7 @@
 #include <string.h>
 #include <time_structure.h>
 #include <unique_time.h>
+#include <validate_sensor.h>
 
 void str_error();
 /**
@@ -21,7 +22,7 @@ void str_error();
 /*
  * argc holds the no of arguments passed.By default, the argument length == 1 which contains the name of the program
  * Thus argv[0] holds the program name.
- * Order of Arguments to be passed are "name of .csv file,no of sensor in each grp, sensor min range,sensor max range,
+ * Order of Arguments to be passed are "name of .csv file, sensor min range,sensor max range,
  * time interval,parameter p of algorithm, parameter q of algorithm"
  */
 int main(int argc,char *argv[]) {
@@ -132,22 +133,39 @@ int main(int argc,char *argv[]) {
     else
         printf("failure\n");
 
-   printf("Line Counter%d\n",line_counter);
+    printf("Line Counter%d\n",line_counter);
 
-   /*
-    * Get the length of unique time
-    */
-   int length_unique_time=get_uniquetime_length(p_sensor,line_counter);
-   printf("The length of time list is %d\n",length_unique_time);
-   /*
-    Call get_time_list
-    */
+    /*
+     * Get the length of unique time
+     */
+    int length_unique_time=get_uniquetime_length(p_sensor,line_counter);
+    printf("The length of time list is %d\n",length_unique_time);
+    /*
+     Call get_time_list
+     */
     time_tt *p_time_list =  get_time_list(p_sensor,line_counter,length_unique_time);
 
     /*
      * Call the validate sensor and fusion algorithm
      */
-//    sensor_fusion(p_sensor,line_counter);
+    int sensor_len;
+    sensor_t *p_v_sensor;
+    for(int i=0;i<length_unique_time;i++){
+        p_v_sensor=(sensor_t *)malloc(line_counter*sizeof(sensor_t));
+        sensor_len=compare_sensor_range(p_sensor,sensor_min_range,sensor_max_range,line_counter,p_time_list[i],p_v_sensor);
+        /*
+         * All the sensors are out of range
+         */
+        if(sensor_len == 0){
+            printf("ALL THE SENSORS ARE OUT OF RANGE\n");
+        }
+        else if(sensor_len == 1){
+            printf("The Fused output IS %lf\n",(p_v_sensor+0)->data);
+        }else{
+            sensor_fusion(p_v_sensor,sensor_len);
+        }
+        free(p_v_sensor);
+    }
 
     /*
      * Call the stuck sensor algorithm
