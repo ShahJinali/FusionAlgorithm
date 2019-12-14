@@ -151,7 +151,7 @@ int main(int argc,char *argv[]) {
     int sensor_len;
     sensor_t *p_v_sensor;
     for(int i=0;i<length_unique_time;i++){
-        p_v_sensor=(sensor_t *)malloc(line_counter*sizeof(sensor_t));
+        p_v_sensor=(sensor_t *)malloc(sizeof(sensor_t) * (line_counter/length_unique_time));
         sensor_len=compare_sensor_range(p_sensor,sensor_min_range,sensor_max_range,line_counter,p_time_list[i],p_v_sensor);
         /*
          * All the sensors are out of range
@@ -172,6 +172,12 @@ int main(int argc,char *argv[]) {
      */
     compute_stuck_sensor(p_sensor,p_time_list,interval,length_unique_time,line_counter);
 
+    /*
+     * Free the Memory
+     */
+    free(p_fptr);
+    free(p_sensor);
+    free(p_time_list);
     return 0;
 }
 
