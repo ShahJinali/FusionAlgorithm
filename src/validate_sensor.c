@@ -3,7 +3,16 @@
 #include <stdio.h>
 #include <unique_time.h>
 #include <string.h>
-
+/**
+ * <p>This function computes the number of sensors at a particular time and filter the data of out of range sensors.</p>
+ * @param p_sensor
+ * @param min
+ * @param max
+ * @param line_counter
+ * @param curr_time
+ * @param v_sensor
+ * @version 1.0
+ */
 int compare_sensor_range(sensor_t *p_sensor,double min ,double max,int line_counter,time_tt curr_time,sensor_t *v_sensor){
 
     int length=0;
