@@ -133,16 +133,16 @@ int main(int argc,char *argv[]) {
     else
         printf("failure\n");
 
-   printf("Line Counter%d\n",line_counter);
+    printf("Line Counter%d\n",line_counter);
 
-   /*
-    * Get the length of unique time
-    */
-   int length_unique_time=get_uniquetime_length(p_sensor,line_counter);
-   printf("The length of time list is %d\n",length_unique_time);
-   /*
-    Call get_time_list
-    */
+    /*
+     * Get the length of unique time
+     */
+    int length_unique_time=get_uniquetime_length(p_sensor,line_counter);
+    printf("The length of time list is %d\n",length_unique_time);
+    /*
+     Call get_time_list
+     */
     time_tt *p_time_list =  get_time_list(p_sensor,line_counter,length_unique_time);
 
     /*

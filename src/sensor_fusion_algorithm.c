@@ -103,7 +103,7 @@ double sensor_fusion(sensor_t *p_sensor,int no_sensor){
      */
     printf("\n===========================================Step7(2 & 3) of Algorithm==========================================\n");
     double fused_output=weight_coefficient(p_sensor,p_Z,p_discard_index,no_sensor);
-    printf("%lf ",fused_output);
+    printf("%lf \n",fused_output);
 
     /*
      * Free the memory
