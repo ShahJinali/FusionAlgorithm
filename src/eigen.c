@@ -1,84 +1,84 @@
 #include <gsl/gsl_eigen.h>
 #include <gsl/gsl_matrix.h>
 /**
- * <p>This function computes the eigen value and eigen vector of symmetric matrix obtained from step1.
- * GSL library is used for computing the eigen value and eigen vector
+ *
+ * @param pp_D_aaray Pointer to 2D array obtained from step1 of algorithm
+ * @param p_eigen_val Pointer to eigen value
+ * @param pp_eigen_vec Pointer to eigen vector
+ * @param no_sensor It contains the no of sensor at particular time
+ * @return It will return 1 on success
+ * @details
+ * <p>This function computes the eigen value and eigen vector of symmetric matrix obtained from step1 of algorithm.
+ * GSL library is used for computing the eigen value and eigen vector.
  * In order to install the GSL ; follow the steps of document</p>
- * @param pp_D_aaray
- * @param p_eigen_val
- * @param pp_eigen_vec
- * @param no_sensor
- * @version 1.0
+ * @see support_degree_matrix.h
  */
-int compute_eigen(double **pp_D_aaray, double *p_eigen_val,double **pp_eigen_vec,int no_sensor){
+int compute_eigen(double **pp_D_aaray,int no_sensor, double *p_eigen_val,double **pp_eigen_vec){
 
     /*
     Convert the 2D matrix pp_D_array into gsl matrix with dimensions equal to no_sensor
-    Step1 Allocate the memory
+    Allocate the memory
     */
     gsl_matrix *p_matrix=gsl_matrix_alloc(no_sensor,no_sensor);
 
     /*
-    Step 2 Assign the value to gsl_matrix
+    Assign the value to gsl_matrix
     */
-    for (int rows = 0; rows < no_sensor; rows++) {
-        for (int cols = 0; cols < no_sensor; cols++)
-        {
+    for (int rows = 0; rows < no_sensor; rows++){
+        for (int cols = 0; cols < no_sensor; cols++){
             gsl_matrix_set(p_matrix, rows, cols, pp_D_aaray[rows][cols]);
         }
     }
 
     /*
-    Step3 Allocate the temporary memory to eigen value equal to no_sensor
+    Allocate the temporary memory to eigen value equal to no_sensor
      */
     gsl_vector *p_eval = gsl_vector_alloc (no_sensor);
 
     /*
-    Step4 Allocate the temporary memory to eigen vector equal to no_sensor
+    Allocate the temporary memory to eigen vector equal to no_sensor
      */
     gsl_matrix *p_evec = gsl_matrix_alloc (no_sensor, no_sensor);
 
     /*
-    Step5 Create the temporary eigen computation workspace
+    Create the temporary eigen computation workspace
     */
     gsl_eigen_symmv_workspace * p_w = gsl_eigen_symmv_alloc (no_sensor);
 
     /*
-    Step6 Compute the eigen value and vector
+    Compute the eigen value and vector
     */
     gsl_eigen_symmv (p_matrix, p_eval, p_evec, p_w);
 
     /*
-    Step 7 Free the memory of workspace
+    Free the memory of workspace
     */
     gsl_eigen_symmv_free (p_w);
 
     /*
-    Step8 Arrange it in ascending order
-    change here
-     */
+    Arrange it in ascending order
+    */
     gsl_eigen_symmv_sort (p_eval, p_evec,GSL_EIGEN_SORT_VAL_DESC);
 
     /*
-     Step9 Assign the compute eval and evec to p_eigen_val,p_eigen_vec
+    Assign the compute eval and evec to p_eigen_val,p_eigen_vec
      */
     for (int rows = 0; rows < no_sensor; rows++){
         p_eigen_val[rows]= gsl_vector_get (p_eval, rows);
         /*
          For getting the eigen vector and arrange it in row form instead of column form which Transpose the eigen vector
         */
-        for(int cols=0;cols<no_sensor;cols++)
-        {
+        for(int cols=0;cols<no_sensor;cols++){
             pp_eigen_vec[rows][cols]=gsl_matrix_get(p_evec, cols, rows);
         }
     }
     /*
-    Step 10 Free the eigen value and eigen vector
+    Free the eigen value and eigen vector
     */
     gsl_vector_free (p_eval);
     gsl_matrix_free (p_evec);
     /*
-     Return 0 on success
+     Return 1 on success
      */
-    return 0;
+    return 1;
 }

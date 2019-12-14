@@ -35,7 +35,7 @@ double sensor_fusion(sensor_t *p_sensor,int no_sensor){
         pp_eigen_vector[i]=(double *) malloc(sizeof(double) * no_sensor);
     }
 
-    compute_eigen(pp_D_array,p_eigen_val,pp_eigen_vector,no_sensor);
+    compute_eigen(pp_D_array,no_sensor,p_eigen_val,pp_eigen_vector);
     printf("======================================The step 2 of an algorithm=======================================\n");
     for(int i=0;i<no_sensor;i++){
         printf("The eigen value is %lf : [ ",p_eigen_val[i]);

@@ -9,8 +9,8 @@ TARGET=FusedOutput
 
 default :$(TARGET)
 
-$(TARGET): main.o eigen.o contribution_rate_k_component.o contribution_rate_m_component.o eliminate_incorrect_data.o input_output_csv.o integrated_support_score.o unique_value.o principal_component.o sensor_fusion_algorithm.o support_degree_matrix.o weight_coefficient_sensor.o
-	$(CC) $(CFLAGS) $(LFLAGS) -o bin/$(TARGET) build/main.o build/eigen.o build/contribution_rate_k_component.o build/unique_value.o build/contribution_rate_m_component.o build/eliminate_incorrect_data.o build/input_output_csv.o build/integrated_support_score.o build/principal_component.o build/sensor_fusion_algorithm.o build/support_degree_matrix.o build/weight_coefficient_sensor.o $(LIBS)
+$(TARGET): main.o eigen.o contribution_rate_k_component.o contribution_rate_m_component.o eliminate_incorrect_data.o input_output_csv.o integrated_support_score.o unique_time.o principal_component.o sensor_fusion_algorithm.o support_degree_matrix.o weight_coefficient_sensor.o validate_sensor.o stuck_sensor.o
+	$(CC) $(CFLAGS) $(LFLAGS) -o bin/$(TARGET) build/main.o build/eigen.o build/contribution_rate_k_component.o build/unique_time.o build/contribution_rate_m_component.o build/eliminate_incorrect_data.o build/input_output_csv.o build/integrated_support_score.o build/principal_component.o build/sensor_fusion_algorithm.o build/support_degree_matrix.o build/weight_coefficient_sensor.o build/validate_sensor.o build/stuck_sensor.o $(LIBS)
 
 main.o :src/main.c
 	$(CC) -c $(CFLAGS) $(INCLUDES) src/main.c -o build/main.o
@@ -30,8 +30,8 @@ eliminate_incorrect_data.o : src/eliminate_incorrect_data.c
 input_output_csv.o : src/input_output_csv.c
 	$(CC) -c $(CFLAGS) $(INCLUDES) src/input_output_csv.c -o build/input_output_csv.o
 
-unique_value.o : src/unique_value.c
-	$(CC) -c $(CFLAGS) $(INCLUDES) src/unique_value.c -o build/unique_value.o
+unique_time.o : src/unique_time.c
+	$(CC) -c $(CFLAGS) $(INCLUDES) src/unique_time.c -o build/unique_time.o
 
 integrated_support_score.o : src/integrated_support_score.c
 	$(CC) -c $(CFLAGS) $(INCLUDES) src/integrated_support_score.c -o build/integrated_support_score.o
@@ -48,6 +48,12 @@ support_degree_matrix.o : src/support_degree_matrix.c
 weight_coefficient_sensor.o : src/weight_coefficient_sensor.c
 	$(CC) -c $(CFLAGS) $(INCLUDES) src/weight_coefficient_sensor.c -o build/weight_coefficient_sensor.o
 
+validate_sensor.o : src/validate_sensor.c
+	$(CC) -c $(CFLAGS) $(INCLUDES) src/validate_sensor.c -o build/validate_sensor.o
+
+stuck_sensor.o : src/stuck_sensor.c
+	$(CC) -c $(CFLAGS) $(INCLUDES) src/stuck_sensor.c -o build/stuck_sensor.o
+
 #CLEAN COMMANDS
-clean: 
+clean:
 	rm -f bin/* build/*
