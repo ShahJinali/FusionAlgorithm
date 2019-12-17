@@ -1,16 +1,23 @@
+/**
+ * @file eigen.c
+ * @author Shah Jinali <jinalibenhiteshbhais@cmail.carleton.ca>
+ * @author Shah Rushabh <RushabhSudhirkumarSh@cmail.carleton.ca>
+ * @author Patel Jay <jpate122@uottawa.ca>
+ */
 #include <gsl/gsl_eigen.h>
 #include <gsl/gsl_matrix.h>
 /**
  *
- * @param pp_D_aaray Pointer to 2D array obtained from step1 of algorithm
- * @param p_eigen_val Pointer to eigen value
- * @param pp_eigen_vec Pointer to eigen vector
- * @param no_sensor It contains the no of sensor at particular time
+ * @param[in] pp_D_aaray[in] Pointer to 2D array obtained from step1 of algorithm
+ * @param[in] no_sensor[in] It contains the no of sensor at particular time
+ * @param[out] p_eigen_val[inout] Pointer to eigen value
+ * @param[out] pp_eigen_vec[inout] Pointer to eigen vector
  * @return It will return 1 on success
- * @details
+ * @brief
  * <p>This function computes the eigen value and eigen vector of symmetric matrix obtained from step1 of algorithm.
+ * It will arrange the eigen value in descending order.<br>
  * GSL library is used for computing the eigen value and eigen vector.
- * In order to install the GSL ; follow the steps of document</p>
+ * In order to install the GSL ; see the INSTALL file</p>
  * @see support_degree_matrix.h
  */
 int compute_eigen(double **pp_D_aaray,int no_sensor, double *p_eigen_val,double **pp_eigen_vec){

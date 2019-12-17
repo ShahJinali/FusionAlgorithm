@@ -29,11 +29,12 @@ int main (void)// Main function
     }
 
     // add test1 to suite1
-    if ( (NULL == CU_add_test(pSuite, "test_input_output",test_run_input_output)) ||
-            (NULL == CU_add_test(pSuite, "test_unique_time",test_run_unique_time)) ||
-            (NULL == CU_add_test(pSuite, "test_validate_sensor",test_run_validate)) ||
-            (NULL == CU_add_test(pSuite, "test_sensor_fusion",test_run_sensor_fusion)) ||
-            (NULL == CU_add_test(pSuite, "test_stuck_sensor",test_run_stuck_sensor)))
+    if ( (NULL == CU_add_test(pSuite, "test_input_output",test_run_input_output))
+//            (NULL == CU_add_test(pSuite, "test_unique_time",test_run_unique_time)) ||
+//            (NULL == CU_add_test(pSuite, "test_validate_sensor",test_run_validate)) ||
+//            (NULL == CU_add_test(pSuite, "test_sensor_fusion",test_run_sensor_fusion)) ||
+//            (NULL == CU_add_test(pSuite, "test_stuck_sensor",test_run_stuck_sensor))
+            )
     {
         CU_cleanup_registry();
         return CU_get_error();

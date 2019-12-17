@@ -1,3 +1,11 @@
+/**
+ * @file unique_time.h
+ * @author Shah Jinali <jinalibenhiteshbhais@cmail.carleton.ca>
+ * @author Shah Rushabh <RushabhSudhirkumarSh@cmail.carleton.ca>
+ * @author Patel Jay <jpate122@uottawa.ca>
+ * @brief This file contains the declaration of function used for calculating the unique time, parsing the time into format time_tt
+ *         and length of unique time list
+ */
 #ifndef FUSIONALGORITHM_UNIQUE_TIME_H
 #define FUSIONALGORITHM_UNIQUE_TIME_H
 #include <sensor_structure.h>

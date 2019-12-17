@@ -1,71 +1,103 @@
+/**
+ * @file main.c
+ * @author Shah Jinali <jinalibenhiteshbhais@cmail.carleton.ca>
+ * @author Shah Rushabh <RushabhSudhirkumarSh@cmail.carleton.ca>
+ * @author Patel Jay <jpate122@uottawa.ca>
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <input_output_csv.h>
 #include <sensor_fusion_algorithm.h>
 #include <stuck_sensor.h>
-#include <string.h>
 #include <time_structure.h>
 #include <unique_time.h>
 #include <validate_sensor.h>
+#include <ctype.h>
 
 void str_error();
 /**
- * @author : Jinali Shah
- * @version:1.1
- * @date :2019/10/27
- * @return
- *  <p>This is main function and executable file will run this function</p>
- */
-/*
- * Declare as global variable in main.c and initialize here and it is used as extern int line_counter in other files
+ * @param argc Holds the total no of arguments given from command line
+ * @param argv Pointer to command line argument
+ * @return It will return 0 on success
+ * @brief This is the main function and function for validate sensor, fusion algorithm and stuck sensor are called inside this function
+ * @see input_output_csv.h
+ * @see sensor_fusion_algorithm.h
+ * @see stuck_sensor.h
+ * @see validate_sensor.h
+ * @see time_structure.h
+ * @see sensor_structure.h
+ * @see unique_time.h
  */
 /*
  * argc holds the no of arguments passed.By default, the argument length == 1 which contains the name of the program
  * Thus argv[0] holds the program name.
  * Order of Arguments to be passed are "name of .csv file, sensor min range,sensor max range,
- * time interval,parameter p of algorithm, parameter q of algorithm"
+ * time interval,parameter p of algorithm, parameter q of algorithm".
+ * Argument time interval, parameter p and parameter q are optional.If not provided ,then it will take the default value.
  */
 int main(int argc,char *argv[]) {
 
+    /*
+     * Stores the name and path of file
+     */
     char *name_file;
+    /*s
+     * Stores the minimum and maximum range of sensor
+     */
     int sensor_min_range;
     int sensor_max_range;
     /*
-     * Default value If not specified by user
+     * Default value of time interval 0:10,If not specified by user
      */
     time_tt interval;
     interval.tm_hour=0;
     interval.tm_min=10;
+    /*
+     * Default value of fault tolerance and parameter p of algorithm ,If not specified by user
+     */
     double q_fault=0.7;
     double p=0.85;
 
+    /*
+     * Pointer to input file
+     */
     FILE *p_fptr;
+
+    /*
+     * Pointer to Output File
+     */
+    FILE *p_fptr_write;
     char line[1024];
     int loop_counter=0;
+
+    /*
+     * Stores the value 0 or 1 ,If 1 then input file is read successfully else result is 0
+     */
     int result;
+
+    /*
+     * Pointer to structure sensor_t which stores sensor name, time and data
+     */
     sensor_t *p_sensor;
-    char **unique_time;
-    char path_prefix[9]="../data/";
-    char *file_path;
 
     if(argc >=1 && argc < 4){
         str_error();
         return -1;
-    }
-    else{
+    } else{
         /*
-        Assuming the argv[1] is the name of file
-         */
+        Assuming the argv[1] is the path and name of file
+        */
         name_file=argv[1];
-        file_path=strcat(path_prefix,name_file);
+
         /*
-         Assuming the argv[3] is min range and argv[4] is max range
-         */
+        Assuming the argv[2] is min range and argv[3] is max range
+        */
         sensor_min_range=atoi(argv[2]);
         sensor_max_range=atoi(argv[3]);
+
         /*
-         argv[5] , argv[6] and argv[7] is optional ,so If user doesn't specify then it will take the default value.
-         */
+        argv[4] , argv[5] and argv[6] is optional ,so If user doesn't specify then it will take the default value.
+        */
         if(argc == 5) {
             interval = time_parse(argv[4], interval);
         }
@@ -78,27 +110,23 @@ int main(int argc,char *argv[]) {
             q_fault = atof(argv[5]);
             p = atof(argv[6]);
         }
-
-        printf("%s\n",name_file);
-        printf("%s\n",file_path);
-        printf("%d\n",sensor_min_range);
-        printf("%d\n",sensor_max_range);
-        printf("%d %d\n",interval.tm_hour,interval.tm_min);
-        printf("%lf \n",q_fault);
-        printf("%lf \n",p);
     }
-    /**
-        This is the pointer to file sample.csv.The file sample.csv is open in read mode
-     */
-    p_fptr = fopen(file_path, "r");
 
-    /**
-     * If file is not found in specified path ,then it will return -1 and exit the program
+    /*
+    * Initialize input File Pointer
+    */
+    p_fptr = fopen(name_file, "r");
+
+    /*
+     * Initialize Pointer to output file
      */
+    p_fptr_write=fopen("../data/output.txt","w");
+
     if (p_fptr == NULL) {
-        printf("The file pointer is not initialize");
+        printf("FILE POINTER IS NOT INITIALIZE");
         return -1;
     }
+
     /*
     * This loop is used to read the number of lines of file.So it can be further used to initialize the dynamic
      * array of sensor_t *p_sensor
@@ -118,51 +146,43 @@ int main(int argc,char *argv[]) {
      */
     p_sensor = (sensor_t *) malloc(line_counter * sizeof(sensor_t));
 
-    /**
-     * @param p_fptr
-     * @param p_sensor
-     * @return
-     * <p>This function parse the csv file</p>
-     */
     result = read_csv(p_fptr, p_sensor);
     /*
      * If function returns 1 then the file is parse successfully.
      */
-    if (result == 1)
-        printf("success\n");
-    else
-        printf("failure\n");
-
-    printf("Line Counter%d\n",line_counter);
-
+    if(result != 1){
+        printf("Error in parsing the file");
+        return -1;
+    }
     /*
      * Get the length of unique time
      */
     int length_unique_time=get_uniquetime_length(p_sensor,line_counter);
-    printf("The length of time list is %d\n",length_unique_time);
+
     /*
      Call get_time_list
      */
     time_tt *p_time_list =  get_time_list(p_sensor,line_counter,length_unique_time);
 
     /*
-     * Call the validate sensor and fusion algorithm
+     * Call the validate sensor and fusion algorithm for each time period
      */
-    int sensor_len;
     sensor_t *p_v_sensor;
     for(int i=0;i<length_unique_time;i++){
+
         p_v_sensor=(sensor_t *)malloc(sizeof(sensor_t) * (line_counter/length_unique_time));
-        sensor_len=compare_sensor_range(p_sensor,sensor_min_range,sensor_max_range,line_counter,p_time_list[i],p_v_sensor);
+        int sensor_len=compare_sensor_range(p_sensor,sensor_min_range,sensor_max_range,line_counter,p_time_list[i],p_v_sensor);
+
         /*
          * All the sensors are out of range
          */
         if(sensor_len == 0){
-            printf("ALL THE SENSORS ARE OUT OF RANGE\n");
-        }
-        else if(sensor_len == 1){
-            printf("The Fused output IS %lf\n",(p_v_sensor+0)->data);
-        }else{
-            sensor_fusion(p_v_sensor,sensor_len);
+            fprintf(p_fptr_write,"===================AT TIME %d:%d====================\n",p_time_list[i].tm_hour,p_time_list[i].tm_min);
+            fputs("ALL THE SENSORS ARE OUT OF RANGE\nNO FUSED OUTPUT\n\n",p_fptr_write);
+        } else if(sensor_len == 1){
+            write_output_file(p_fptr_write,p_v_sensor,sensor_len,(p_v_sensor+0)->data);
+        } else{
+            write_output_file(p_fptr_write,p_v_sensor,sensor_len,sensor_fusion(p_v_sensor,sensor_len));
         }
         free(p_v_sensor);
     }
@@ -178,9 +198,14 @@ int main(int argc,char *argv[]) {
     free(p_fptr);
     free(p_sensor);
     free(p_time_list);
+    printf("\nSEE THE data/stuck_sensor.txt file\n");
+    printf("SEE THE data/output.txt file\n");
+
     return 0;
 }
-
+/**
+ * @brief Prints the error message ; if no of arguments are less than 4.
+ */
 void str_error(){
     printf("Insufficient no of arguments\n");
     printf("Provide the arguments in this format");
