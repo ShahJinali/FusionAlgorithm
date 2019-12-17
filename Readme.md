@@ -16,62 +16,62 @@ G. Hongyan, “A simple multi-sensor data fusion algorithm based on principal co
 # Project Folder Structure
 Our Project will follow the conventional C file structure.<br>
 SensorFusion<br>
-│  README.md<br>
-│   INSTALL.md<br>
-|   .gitignore<br>
-|   makefile<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;  README.md<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;   INSTALL.md<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;   .gitignore<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;   makefile<br>
 |<br>
 └───src<br>
-|   &nbsp;&nbsp;&nbsp;&nbsp;|   contribution_rate_k_component.c<br>
-|   |   contribution_rate_m_component.c<br>
-|   |   eigen.c<br>
-|   |   eliminate_incorrect_data.c<br>
-|   |   input_output_csv.c<br>
-|   |   integrated_support_score.c<br>
-|   |	main.c<br>
-|	|	principal_component.c<br>
-|	|	sensor_fusion_algorithm.c<br>
-|	|	stuck_sensor.c<br>
-|	|	support_degree_matrix.c<br>
-|	|	unique_time.c<br>
-|	|	validate_sensor.c<br>
-|	|	weight_coefficient_sensor.c<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;contribution_rate_k_component.c<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;   |&nbsp;&nbsp;&nbsp;&nbsp;   contribution_rate_m_component.c<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;   |&nbsp;&nbsp;&nbsp;&nbsp;   eigen.c<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;   |&nbsp;&nbsp;&nbsp;&nbsp;   eliminate_incorrect_data.c<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;   |&nbsp;&nbsp;&nbsp;&nbsp;   input_output_csv.c<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;   |&nbsp;&nbsp;&nbsp;&nbsp;   integrated_support_score.c<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;   |&nbsp;&nbsp;&nbsp;&nbsp;	main.c<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;	|&nbsp;&nbsp;&nbsp;&nbsp;	principal_component.c<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;	|&nbsp;&nbsp;&nbsp;&nbsp;	sensor_fusion_algorithm.c<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;	|&nbsp;&nbsp;&nbsp;&nbsp;	stuck_sensor.c<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;	|&nbsp;&nbsp;&nbsp;&nbsp;	support_degree_matrix.c<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;	|&nbsp;&nbsp;&nbsp;&nbsp;	unique_time.c<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;	|&nbsp;&nbsp;&nbsp;&nbsp;	validate_sensor.c<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;	|&nbsp;&nbsp;&nbsp;&nbsp;	weight_coefficient_sensor.c<br>
 |<br>
 └───include<br>
-|   |   contribution_rate_k_component.h<br>
-|   |   contribution_rate_m_component.h<br>
-|   |   eigen.h<br>
-|   |   eliminate_incorrect_data.h<br>
-|   |   input_output_csv.h<br>
-|   |   integrated_support_score.h<br>
-|	|	principal_component.h<br>
-|	|	sensor_fusion_algorithm.h<br>
-|	|	sesnor_structure.h<br>
-|	|	stuck_sensor.h<br>
-|	|	support_degree_matrix.h<br>
-|	|	time_structure.h<br>
-|	|	unique_time.h<br>
-|	|	validate_sensor.h<br>
-|	|	weight_coefficient_sensor.h<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;   |&nbsp;&nbsp;&nbsp;&nbsp;   contribution_rate_k_component.h<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;   |&nbsp;&nbsp;&nbsp;&nbsp;   contribution_rate_m_component.h<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;   |&nbsp;&nbsp;&nbsp;&nbsp;   eigen.h<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;   |&nbsp;&nbsp;&nbsp;&nbsp;   eliminate_incorrect_data.h<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;   |&nbsp;&nbsp;&nbsp;&nbsp;   input_output_csv.h<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;   |&nbsp;&nbsp;&nbsp;&nbsp;   integrated_support_score.h<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;	|&nbsp;&nbsp;&nbsp;&nbsp;	principal_component.h<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;	|&nbsp;&nbsp;&nbsp;&nbsp;	sensor_fusion_algorithm.h<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;	|&nbsp;&nbsp;&nbsp;&nbsp;	sesnor_structure.h<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;	|&nbsp;&nbsp;&nbsp;&nbsp;	stuck_sensor.h<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;	|&nbsp;&nbsp;&nbsp;&nbsp;	support_degree_matrix.h<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;	|&nbsp;&nbsp;&nbsp;&nbsp;	time_structure.h<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;	|&nbsp;&nbsp;&nbsp;&nbsp;	unique_time.h<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;	|&nbsp;&nbsp;&nbsp;&nbsp;	validate_sensor.h<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;	|&nbsp;&nbsp;&nbsp;&nbsp;	weight_coefficient_sensor.h<br>
 |<br>
 └───data<br>
-|   |   sample.csv<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;   |&nbsp;&nbsp;&nbsp;&nbsp;   sample.csv<br>
 |<br>
 └───test<br>
 |	└───src<br>
-|	|	|	testMain.c<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;	|&nbsp;&nbsp;&nbsp;&nbsp;	|&nbsp;&nbsp;&nbsp;&nbsp;	testMain.c<br>
 |<br>
 └───doc<br>
-│   └───html<br>
-|   |   |	index.html<br>
-|	|	|	...<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;   └───html<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;   |&nbsp;&nbsp;&nbsp;&nbsp;   |&nbsp;&nbsp;&nbsp;&nbsp;	index.html<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;	|&nbsp;&nbsp;&nbsp;&nbsp;	|&nbsp;&nbsp;&nbsp;&nbsp;	...<br>
 
 
 # Install
 To install the dependencies and run this software , refer to INSTALL.md file
 
 # Documentation
-To see the user level documentation ,refer to doc/ folder
+To see the user level documentation ,refer to doc/user_guide.md folder
 
 # Aknowledgement
 > -Dr. Cristina Ruiz Martin for providing advice on how to develop the software.
