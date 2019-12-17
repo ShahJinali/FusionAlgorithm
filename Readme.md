@@ -14,57 +14,57 @@ G. Hongyan, “A simple multi-sensor data fusion algorithm based on principal co
 > - Patel Jay <jpate122@uottawa.ca> -Univeristy of Ottawa
 
 # Project Folder Structure
-Our Project will follow the conventional C file structure.
-SensorFusion
+Our Project will follow the conventional C file structure.<br>
+SensorFusion<br>
 │  README.md<br>
 │   INSTALL.md<br>
-|   .gitignore
-|   makefile
-|
-└───src
-|   |   contribution_rate_k_component.c
-|   |   contribution_rate_m_component.c
-|   |   eigen.c
-|   |   eliminate_incorrect_data.c
-|   |   input_output_csv.c
-|   |   integrated_support_score.c
-|   |	main.c
-|	|	principal_component.c
-|	|	sensor_fusion_algorithm.c
-|	|	stuck_sensor.c
-|	|	support_degree_matrix.c
-|	|	unique_time.c
-|	|	validate_sensor.c
-|	|	weight_coefficient_sensor.c
-|
-└───include
-|   |   contribution_rate_k_component.h
-|   |   contribution_rate_m_component.h
-|   |   eigen.h
-|   |   eliminate_incorrect_data.h
-|   |   input_output_csv.h
-|   |   integrated_support_score.h
-|	|	principal_component.h
-|	|	sensor_fusion_algorithm.h
-|	|	sesnor_structure.h
-|	|	stuck_sensor.h
-|	|	support_degree_matrix.h
-|	|	time_structure.h
-|	|	unique_time.h
-|	|	validate_sensor.h
-|	|	weight_coefficient_sensor.h
-|
-└───data
-|   |   sample.csv
-|
-└───test
-|	└───src
-|	|	|	testMain.c
-|
-└───doc
-│   └───html
-|   |   |	index.html
-|	|	|	...
+|   .gitignore<br>
+|   makefile<br>
+|<br>
+└───src<br>
+|   |   contribution_rate_k_component.c<br>
+|   |   contribution_rate_m_component.c<br>
+|   |   eigen.c<br>
+|   |   eliminate_incorrect_data.c<br>
+|   |   input_output_csv.c<br>
+|   |   integrated_support_score.c<br>
+|   |	main.c<br>
+|	|	principal_component.c<br>
+|	|	sensor_fusion_algorithm.c<br>
+|	|	stuck_sensor.c<br>
+|	|	support_degree_matrix.c<br>
+|	|	unique_time.c<br>
+|	|	validate_sensor.c<br>
+|	|	weight_coefficient_sensor.c<br>
+|<br>
+└───include<br>
+|   |   contribution_rate_k_component.h<br>
+|   |   contribution_rate_m_component.h<br>
+|   |   eigen.h<br>
+|   |   eliminate_incorrect_data.h<br>
+|   |   input_output_csv.h<br>
+|   |   integrated_support_score.h<br>
+|	|	principal_component.h<br>
+|	|	sensor_fusion_algorithm.h<br>
+|	|	sesnor_structure.h<br>
+|	|	stuck_sensor.h<br>
+|	|	support_degree_matrix.h<br>
+|	|	time_structure.h<br>
+|	|	unique_time.h<br>
+|	|	validate_sensor.h<br>
+|	|	weight_coefficient_sensor.h<br>
+|<br>
+└───data<br>
+|   |   sample.csv<br>
+|<br>
+└───test<br>
+|	└───src<br>
+|	|	|	testMain.c<br>
+|<br>
+└───doc<br>
+│   └───html<br>
+|   |   |	index.html<br>
+|	|	|	...<br>
 
 
 # Install
