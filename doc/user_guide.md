@@ -47,6 +47,6 @@
 
 	*  Type the following commands to run the project.
 		> cd bin<br>
-		> FusedOuput <<input_file_path>> <<minimum_value>> <<maximum_value>><br>
+		> FusedOuput <input_file_path> <minimum_value> <maximum_value><br>
 
 	> For instance , run as **FusedOuput ../data/sample.csv 50 55**
