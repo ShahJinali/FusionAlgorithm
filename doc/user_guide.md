@@ -36,8 +36,8 @@
 * Open the command prompt and redirect to the path of project.
 
 	>  Type the following commands to build the project.<br>
-		>> make clean<br>
-		>> make<br>
+		 > make clean<br>
+		 > make<br>
 
 ## Run the project
 
