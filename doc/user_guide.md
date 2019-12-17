@@ -35,9 +35,9 @@
 
 * Open the command prompt and redirect to the path of project.
 
-	>  Type the following commands to build the project.<br>
-		 > make clean<br>
-		 > make<br>
+	* Type the following commands to build the project.<br>
+		>  make clean<br>
+		>  make<br>
 
 ## Run the project
 
@@ -45,8 +45,8 @@
 
 * Open the command prompt and redirect to the path of project.
 
-	>  Type the following commands to build the project.
-		>> cd bin<br>
-		>> FusedOuput <input-file-path> <minimum-value> <maximum-value><br>
+	*  Type the following commands to build the project.
+		>  cd bin<br>
+		> FusedOuput <input-file-path> <minimum-value> <maximum-value><br>
 
 	> For instance , run as **FusedOuput ../data/sample.csv 50 55**
