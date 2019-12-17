@@ -9,7 +9,7 @@ Windows family:
 
 # Compilers
 
-This software has been tested using compiler:
+This software has been tested using the compiler:
 
 * gcc (7.4.0)
 * Probably it will work with previous versions as well.
@@ -27,7 +27,7 @@ In order to install this package ,refer the Installation steps below.
 
 # Installation
 
-We had install all the required packages through cygwin terminal<br>
+We had install all the required packages through cygwin terminal.
 
 ## Steps
 
@@ -71,5 +71,5 @@ We had install all the required packages through cygwin terminal<br>
 
 # Compile and Run
 
-* Refer doc/user_guide.md file to compile and run the software
+Refer doc/user_guide.md file to compile and run the software
 
