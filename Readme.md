@@ -22,7 +22,7 @@ SensorFusion<br>
 |   makefile<br>
 |<br>
 └───src<br>
-|    |       contribution_rate_k_component.c<br>
+|   &nbsp;&nbsp;&nbsp;&nbsp;|   contribution_rate_k_component.c<br>
 |   |   contribution_rate_m_component.c<br>
 |   |   eigen.c<br>
 |   |   eliminate_incorrect_data.c<br>
