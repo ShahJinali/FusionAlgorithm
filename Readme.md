@@ -16,8 +16,8 @@ G. Hongyan, “A simple multi-sensor data fusion algorithm based on principal co
 # Project Folder Structure
 Our Project will follow the conventional C file structure.
 SensorFusion
-│  README.md
-│   INSTALL.md
+│  README.md<br>
+│   INSTALL.md<br>
 |   .gitignore
 |   makefile
 |
