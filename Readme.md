@@ -5,7 +5,7 @@ This fusion algorithm takes the input from .csv file and generate the fused outp
 The user provides the minimum and maximum range of sensor to validate the sensors. Only the validated sensor data is passed to fusion algorithm.
 It also computes the sensor which are stuck. The sensors are said to be stuck if its value doesn't change after given time interval.
 
-Below is the paper which describes the steps and results of fusion algorithm.
+Below is the paper which describes the steps and results of fusion algorithm.<br>
 G. Hongyan, “A simple multi-sensor data fusion algorithm based on principal component analysis,” in 2009 ISECS International Colloquium on Computing, Communication, Control, and Management, Sanya, China, 2009, pp. 423–426.
 
 # Author
@@ -14,7 +14,6 @@ G. Hongyan, “A simple multi-sensor data fusion algorithm based on principal co
 > - Patel Jay <jpate122@uottawa.ca> -Univeristy of Ottawa
 
 # Project Folder Structure
-
 Our Project will follow the conventional C file structure.
 SensorFusion
 |   README.md
@@ -67,7 +66,8 @@ SensorFusion
 |   |   |	index.html
 |	|	|	...
 
-#Install
+
+# Install
 To install the dependencies and run this software , refer to INSTALL.md file
 
 # Documentation
