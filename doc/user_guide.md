@@ -12,8 +12,6 @@
 
 * The order of column should not be changed.
 
-* The input .csv file must be sorted.
-
 * The sensor_name should be consistent and number of sensors in each time slot is assumed to be same.
 	> For instance, at time 1:20 ,there is sensor1,sensor2 and sensor3.
 	> Then, at time 1:50 there should be same sensor name i.e. sensor1,sensor2 and sensor3 and same number of sensor.
@@ -29,17 +27,17 @@
 
 **Before building and running the software , read the INSTALL.md file for installing the dependencies.**
 
+## Building the Project
+
 * Download the project on your device.
 
 * Extract the zip folder.
 
-## Building the Project
-
 * Open the command prompt and redirect to the path of project.
 
-	>  Type the following commands to build the project.
-		>> make clean
-		>> make
+	>  Type the following commands to build the project.<br>
+		>> make clean<br>
+		>> make<br>
 
 ## Run the project
 
@@ -48,7 +46,7 @@
 * Open the command prompt and redirect to the path of project.
 
 	>  Type the following commands to build the project.
-		>> cd bin
-		>> FusedOuput <input-file-path> <minimum-value> <maximum-value>
+		>> cd bin<br>
+		>> FusedOuput <input-file-path> <minimum-value> <maximum-value><br>
 
 	> For instance , run as **FusedOuput ../data/sample.csv 50 55**
