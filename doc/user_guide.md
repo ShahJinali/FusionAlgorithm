@@ -22,7 +22,6 @@
 
 * Algorithm doesn't consider the next day.So, the time should be in ascending form i.e.( 00:00,1:00, 2:00, 13:10,...,23:59).
 
-**The order of command line arguments should not be change. It should follow the same order as specified in below section**.<br>
 # Compile and Run
 
 **Before building and running the software , read the INSTALL.md file for installing the dependencies.**
@@ -56,6 +55,7 @@
 * User can also provide the other arguments , but they are optional<br>
 
 * For instance, FusedOuput <input_file_path> <minimum_value> <maximum_value> optional[<time_interval> <p_value> <fault_tolerance>]
+**The order of command line arguments should not be change. It should follow the same order as specified in below section**.<br>
 
 # Outcome of Running software
 
