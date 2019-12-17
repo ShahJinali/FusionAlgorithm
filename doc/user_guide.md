@@ -22,7 +22,7 @@
 
 * Algorithm doesn't consider the next day.So, the time should be in ascending form i.e.( 00:00,1:00, 2:00, 13:10,...,23:59).
 
-
+**The order of command line arguments should not be change. It should follow the same order as specified in below section**.<br>
 # Compile and Run
 
 **Before building and running the software , read the INSTALL.md file for installing the dependencies.**
@@ -49,4 +49,16 @@
 		> cd bin<br>
 		> FusedOuput <input_file_path> <minimum_value> <maximum_value><br>
 
-	> For instance , run as **FusedOuput ../data/sample.csv 50 55**
+	    > For instance , run as **FusedOuput ../data/sample.csv 50 55**
+
+* To run the software <input_file_path> <minimum_value> <maximum_value> is compulsory argument.<br>
+
+* User can also provide the other arguments , but they are optional<br>
+
+* FusedOuput <input_file_path> <minimum_value> <maximum_value> optional[<time_interval> <p> <fault_tolerance>]
+
+# Outcome of Running software
+
+* This software will generate two output files in *data/* folder.
+    > 1. output.txt file - This file contains the list of validated sensor and its fused output according to time wise.<br>
+    > 2. stuck_sensor.txt file - This file contains the list of stuck sensors according to time wise<br>
