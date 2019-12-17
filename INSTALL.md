@@ -48,23 +48,23 @@ We had install all the required packages through cygwin terminal<br>
 7. Select the Packages now and latter on you can install the additional package as well.
 
 8. Click on search box and look for following packages:
-	> make (Under Devel )
-	> gcc-core (Under Devel category)
-	> libgsl-devel (Under Libs category)
-	> gsl (Under Science category)
-	> CUnit (Libs , Math)
+	* make (Under Devel )
+	* gcc-core (Under Devel category)
+	* libgsl-devel (Under Libs category)
+	* gsl (Under Science category)
+	* CUnit (Libs , Math)
 
 9. Click on Next. All the packages along with its dependencies will be downloaded.
 
 10. Cygwin can be operated in two ways:
-	> Through Cygwin Terminal
-	> Through Command Prompt
+	* Through Cygwin Terminal
+	* Through Command Prompt
 
 11. To use cygwin from command prompt, set the path of cygwin to path environment variable.
 	> For instance, path looks like "C:\cygwin64\bin"
 
 12. Check the installed dependencies through following command:
-	> cygcheck -cd | grep <name_package>
+	* cygcheck -cd | grep <name_package>
 	> For instance , it can be cygcheck -cd | grep gsl
 
 13. Now , you are ready to use the software.
