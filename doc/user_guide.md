@@ -55,7 +55,7 @@
 
 * User can also provide the other arguments , but they are optional<br>
 
-* FusedOuput <input_file_path> <minimum_value> <maximum_value> optional[<time_interval> <p> <fault_tolerance>]
+* For instance, FusedOuput <input_file_path> <minimum_value> <maximum_value> optional[<time_interval> <p_value> <fault_tolerance>]
 
 # Outcome of Running software
 
