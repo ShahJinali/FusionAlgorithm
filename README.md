@@ -21,7 +21,7 @@ SensorFusion<br>
 |&nbsp;&nbsp;&nbsp;&nbsp;   .gitignore<br>
 |&nbsp;&nbsp;&nbsp;&nbsp;   makefile<br>
 |<br>
-└──src<br>
+└─src<br>
 |&nbsp;&nbsp;&nbsp;&nbsp;   |&nbsp;&nbsp;&nbsp;&nbsp;   contribution_rate_k_component.c<br>
 |&nbsp;&nbsp;&nbsp;&nbsp;   |&nbsp;&nbsp;&nbsp;&nbsp;   contribution_rate_m_component.c<br>
 |&nbsp;&nbsp;&nbsp;&nbsp;   |&nbsp;&nbsp;&nbsp;&nbsp;   eigen.c<br>
@@ -37,7 +37,7 @@ SensorFusion<br>
 |&nbsp;&nbsp;&nbsp;&nbsp;	|&nbsp;&nbsp;&nbsp;&nbsp;	validate_sensor.c<br>
 |&nbsp;&nbsp;&nbsp;&nbsp;	|&nbsp;&nbsp;&nbsp;&nbsp;	weight_coefficient_sensor.c<br>
 |<br>
-└──include<br>
+└─include<br>
 |&nbsp;&nbsp;&nbsp;&nbsp;   |&nbsp;&nbsp;&nbsp;&nbsp;   contribution_rate_k_component.h<br>
 |&nbsp;&nbsp;&nbsp;&nbsp;   |&nbsp;&nbsp;&nbsp;&nbsp;   contribution_rate_m_component.h<br>
 |&nbsp;&nbsp;&nbsp;&nbsp;   |&nbsp;&nbsp;&nbsp;&nbsp;   eigen.h<br>
@@ -54,15 +54,15 @@ SensorFusion<br>
 |&nbsp;&nbsp;&nbsp;&nbsp;	|&nbsp;&nbsp;&nbsp;&nbsp;	validate_sensor.h<br>
 |&nbsp;&nbsp;&nbsp;&nbsp;	|&nbsp;&nbsp;&nbsp;&nbsp;	weight_coefficient_sensor.h<br>
 |<br>
-└──data<br>
+└─data<br>
 |&nbsp;&nbsp;&nbsp;&nbsp;   |&nbsp;&nbsp;&nbsp;&nbsp;   sample.csv<br>
 |<br>
-└──test<br>
-|	└──src<br>
+└─test<br>
+|	└─src<br>
 |&nbsp;&nbsp;&nbsp;&nbsp;	|&nbsp;&nbsp;&nbsp;&nbsp;	|&nbsp;&nbsp;&nbsp;&nbsp;	testMain.c<br>
 |<br>
-└──doc<br>
-│&nbsp;&nbsp;&nbsp;&nbsp;   └──html<br>
+└─doc<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;   └─html<br>
 |&nbsp;&nbsp;&nbsp;&nbsp;   |&nbsp;&nbsp;&nbsp;&nbsp;   |&nbsp;&nbsp;&nbsp;&nbsp;	index.html<br>
 |&nbsp;&nbsp;&nbsp;&nbsp;   |&nbsp;&nbsp;&nbsp;&nbsp;   |&nbsp;&nbsp;&nbsp;&nbsp;	user_guide.md<br>
 |&nbsp;&nbsp;&nbsp;&nbsp;	|&nbsp;&nbsp;&nbsp;&nbsp;	|&nbsp;&nbsp;&nbsp;&nbsp;	...<br>
