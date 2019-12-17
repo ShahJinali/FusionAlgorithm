@@ -20,8 +20,8 @@ Following are the requirements to run this software:
 
 * GNU Make
 * GCC
-* GSL
-* CUnit
+* GSL(GNU Scientific Library)
+* CUnit (Unit Testing Framework)
 
 In order to install this package ,refer the Installation steps below.
 
@@ -69,7 +69,7 @@ We had install all the required packages through cygwin terminal.
 
 13. Now , you are ready to use the software.
 
-# Compile and Run
+# Compile and Run the Project
 
-Refer doc/user_guide.md file to compile and run the software
+Refer doc/user_guide.md file to build and run the software
 
