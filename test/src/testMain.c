@@ -21,7 +21,7 @@
 void test_run_validate(void);
 void test_run_unique_time(void);
 void test_run_support_degree_matrix(void);
-void test_run_stuck_sensor(void);
+void test_run_stuck_sensor(void){}
 void test_run_sensor_fusion(void);
 void test_run_input_output(void);
 void test_run_eigen(void);
@@ -464,6 +464,7 @@ void test_run_integrated_support_score(void)
 
 }
 
+
 void test_run_eliminate_incorrect_data(void)
 {
     double *p_Z;
@@ -545,8 +546,208 @@ void test_run_sensor_fusion_algorithm(void)
     CU_ASSERT(fabs(fused_output_e-fused_output_a)<0.001);
 
 }
-void test_run_stuck_sensor(void)
+/*
+ * Brief:The test_run_contribution_rate_m_component is used to check the working of compute_contribution_M_rate
+ * function of contribution_rate_m_component.c file.
+ * See: contribution_rate_M_component.c and contribution_rate_M_component.h for passing arguments of function and logical steps.
+ */
+void test_run_contribution_rate_m_component(void)
 {
+    /*
+     * The no_sensors can be changed according to test case.
+     */
+    int no_sensor=3;
+
+    double *p_alpha;
+    p_alpha=(double *)malloc(sizeof(double) * no_sensor);
+    /*
+     * The p_alpha is one dimensional array and the length of the array should be changed according to the
+     * number of sensors.The thresold can be changed to perform different test cases.
+     */
+    p_alpha[0]=0.166667;
+    p_alpha[1]=0.333334;
+    p_alpha[2]=0.500000;
+    double thresold=0.5;
+    int new_no_sensor_a = 2;
+    /*
+     * The function compute_contribution_M_rate returns the new number of sensors which passed through thresold.
+     */
+    int new_no_sensor_e = compute_contribution_M_rate(p_alpha,no_sensor,thresold);
+    CU_ASSERT_EQUAL(new_no_sensor_a,new_no_sensor_e);
+
+}
+/*
+ * Brief:The test_run_integrated_support_score is used to check the working of compute_integrated_score
+ * function of integrated_support_data.c file.
+ * See: integrated_support_data.c and integrated_support_data.h for passing arguments of function and logical steps.
+ */
+void test_run_integrated_support_score(void)
+{
+    /*
+     * The no_sensors can be changed according to test case.
+     */
+    int no_sensor=3;
+    int new_no_sensor=2;
+    double *p_alpha;
+    double **pp_y_value;
+    p_alpha=(double *)malloc(sizeof(double) * no_sensor);
+    pp_y_value=(double **)malloc(sizeof(double *) * no_sensor);
+    for(int i=0;i<no_sensor;i++){
+        pp_y_value[i]=(double *) malloc(sizeof(double) * no_sensor);
+    }
+    /*
+     * The p_alpha is one dimensional array and the length of the array should be changed according to the
+     * number of sensors.The pp_y_value is two dimensional array and the length of rows and columns is depend
+     * upon number of sensors.
+     * Change it according to number of sensors
+     */
+    p_alpha[0]=1;
+    p_alpha[1]=2;
+    p_alpha[2]=3;
+    pp_y_value[0][0]=1;
+    pp_y_value[0][1]=2;
+    pp_y_value[0][2]=3;
+    pp_y_value[1][0]=4;
+    pp_y_value[1][1]=5;
+    pp_y_value[1][2]=6;
+    pp_y_value[2][0]=7;
+    pp_y_value[2][1]=8;
+    pp_y_value[2][2]=9;
+    double *p_Z_e,*p_Z_a;
+    p_Z_e=(double *)malloc(sizeof(double) * no_sensor);
+    p_Z_e[0]=9.000000;
+    p_Z_e[1]=12.000000;
+    p_Z_e[2]=15.000000;
+    /*
+      *The output of the compute_integrated_score is one dimensional array.
+      * and the values are given to p_Z_a to compare it with p_Z_e.
+      */
+    p_Z_a = compute_integrated_score(p_alpha,pp_y_value ,no_sensor,new_no_sensor);
+    for(int i=0;i<no_sensor;i++){
+        CU_ASSERT(fabs(p_Z_e[i]-p_Z_a[i])<0.001);
+    }
+
+}
+/*
+ * Brief:The test_eliminate_incorrect_data is used to check the working of eliminate_incorrect
+ * function of eliminate_incorrect_data.c file.
+ * See: eliminate_incorrect_data.c and eliminate_incorrect_data.h for passing arguments of function and logical steps.
+ */
+
+void test_run_eliminate_incorrect_data(void)
+{
+    double *p_Z;
+    /*
+     * The no_sensors can be changed according to test case.
+     */
+    int no_sensor=3;
+    p_Z=(double *)malloc(sizeof(double) * no_sensor);
+    double fault_value=0.7;
+    /*
+     *The p_z is one dimensional array and the length is changed according to number of sensors.
+     */
+    p_Z[0]=5.0;
+    p_Z[1]=10.0;
+    p_Z[2]=15.0;
+    /*
+     *The p_discard_index_a  and p_discard_index_e ,both are one dimensional array and the length is changed according to number of sensors.
+     * The eliminate_data function computes the p_discard_index_e which is compared with actual value for testing.
+     */
+    int *p_discard_index_a,*p_discard_index_e;
+
+    p_discard_index_a=(int*)malloc(sizeof(int) * no_sensor);
+    p_discard_index_a[0]=1;
+    p_discard_index_a[1]=0;
+    p_discard_index_a[2]=0;
+    p_discard_index_e=eliminate_data(p_Z,fault_value,no_sensor);
+    for(int i=0;i<no_sensor;i++){
+        CU_ASSERT_EQUAL(p_discard_index_a[i],p_discard_index_e[i]);
+    }
+
+}
+void test_run_weight_coefficient_sensor(void)
+{
+    sensor_t *p_sensor;
+    double *p_Z ;
+    int *p_discard_index;
+    /*
+     * The no_sensors can be changed according to test case.
+     */
+    int no_sensor=3;
+    p_sensor = (sensor_t *) malloc(no_sensor* sizeof(sensor_t));
+    /*
+    * Repeat the following step according to number of sensors.for instance,the no_sensors for the given step is two
+    * so it is repeated two times.
+    */
+    strcpy(p_sensor->time,"1:20");
+    strcpy(p_sensor->name,"sensor1");
+    p_sensor->data=53.6;
+    p_sensor++;
+    strcpy(p_sensor->time,"1:20");
+    strcpy(p_sensor->name,"sensor2");
+    p_sensor->data=52.7;
+    p_sensor++;
+    strcpy(p_sensor->time,"1:20");
+    strcpy(p_sensor->name,"sensor3");
+    p_sensor->data=54.7;
+
+    for(int i =0;i<(no_sensor-1);i++){
+        p_sensor--;
+    }
+    /*
+      *The p_Z is one dimensional array and the length is changed according to number of sensors and
+      *The p_discard_index is one dimensional array and length is changed according to number of sensors.
+      */
+    p_Z=(double *)malloc(sizeof(double) * no_sensor);
+    p_Z[0]=5.0;
+    p_Z[1]=10.0;
+    p_Z[2]=15.0;
+    p_discard_index=(int*)malloc(sizeof(int) * no_sensor);
+    p_discard_index[0]=1;
+    p_discard_index[1]=1;
+    p_discard_index[2]=0;
+    /*
+     * The fused_output_a is actual fused_value while the fused_output_e is expected fused_value.
+     */
+    double fused_output_a=54.70000,fused_output_e;
+
+    fused_output_e=weight_coefficient(p_sensor, p_Z ,p_discard_index,no_sensor);
+    CU_ASSERT(fabs(fused_output_a-fused_output_e)<0.0001);
+
+}
+void test_run_sensor_fusion_algorithm(void)
+{
+    sensor_t *p_sensor;
+    int no_sensor=3;
+    /*
+      * The no_sensors can be changed according to test case.
+      */
+
+    p_sensor = (sensor_t *) malloc(no_sensor* sizeof(sensor_t));
+    /*
+    * Repeat the following step according to number of sensors.for instance,the no_sensors for the given step is two
+    * so it is repeated two times.
+    */
+    strcpy(p_sensor->time,"1:20");
+    strcpy(p_sensor->name,"sensor1");
+    p_sensor->data=53.6;
+    p_sensor++;
+    strcpy(p_sensor->time,"1:20");
+    strcpy(p_sensor->name,"sensor2");
+    p_sensor->data=52.7;
+    p_sensor++;
+    strcpy(p_sensor->time,"1:20");
+    strcpy(p_sensor->name,"sensor3");
+    p_sensor->data=54.7;
+    for(int i =0;i<(no_sensor-1);i++){
+        p_sensor--;
+    }
+    /*
+    * The fused_output_a is actual fused_value while the fused_output_e is expected fused_value.
+    */
+    double fused_output_e,fused_output_a=54.133241;
+    fused_output_e=sensor_fusion(p_sensor,no_sensor);
+    CU_ASSERT(fabs(fused_output_e-fused_output_a)<0.001);
 
 }
 
