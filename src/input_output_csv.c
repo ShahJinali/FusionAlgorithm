@@ -61,3 +61,28 @@ int read_csv(FILE *p_fptr, sensor_t *p_sensor) {
 
     return 1;
 }
+/**
+ * @param[in] p_fptr
+ * @param[in] p_sensor
+ * @param[in] no_sensor
+ * @param[in] fusedOutput
+ * @return It will return 1 on success
+ * @brief This function write the output of validate sensor and fused output to output file .The path of output file is data/output.txt.
+ */
+int write_output_file(FILE *p_fptr,sensor_t *p_sensor,int no_sensor, double fusedOutput){
+
+    /*
+     * Check if file pointer is initialize or not
+     */
+    if(p_fptr == NULL){
+        printf("The file pointer is not initialize");
+        return -1;
+    }
+    fprintf(p_fptr,"================AT TIME %s ==================\n",p_sensor->time);
+    fputs("===========LIST OF VALIDATED SENSOR============\n", p_fptr);
+    for (int i = 0; i < no_sensor; i++) {
+        fprintf(p_fptr, "%s \t %lf\n", (p_sensor + i)->name, (p_sensor + i)->data);
+    }
+    fprintf(p_fptr, "The Fused Output is %lf \n\n", fusedOutput);
+    return 1;
+}

@@ -40,7 +40,7 @@ int clean_suite(void) {
     return 0;
 }
 /*
- * Brief : The test_run_input_output function is used to check the proper working of read_csv function of input_output_csv.c file.
+ * Brief : The test_run_input_output function is used to check the proper working of read_csv and write_output_file function of input_output_csv.c file.
  * see  : input_output_csv.h input_output_csv.c for passing arguments of function.
  */
 void test_run_input_output(void){
@@ -57,12 +57,20 @@ void test_run_input_output(void){
     while (fgets(line, 1024, p_fptr)) {
         line_counter++;
     }
-    p_sensor = (sensor_t *) malloc(line_counter * sizeof(sensor_t));
+    /*
+     * The number of sensors can be changed to perform different test cases and accordingly the data of the sensors have to be
+     * provided to perform test case.
+     */
+    int no_sensor=1;
 
+    p_sensor = (sensor_t *) malloc(line_counter * sizeof(sensor_t));
+    double fusedOutput=54.3;
     CU_ASSERT_EQUAL(1,read_csv(p_fptr, p_sensor));
+    CU_ASSERT_EQUAL(1,write_output_file(p_fptr,p_sensor,no_sensor,fusedOutput));
 
     p_fptr = fopen("data/samfsple.csv", "r");
     CU_ASSERT_EQUAL(-1,read_csv(p_fptr, p_sensor));
+    CU_ASSERT_EQUAL(-1,write_output_file(p_fptr,p_sensor,no_sensor,fusedOutput));
     free(p_fptr);
     free(p_sensor);
 }
