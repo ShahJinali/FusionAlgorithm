@@ -1,9 +1,4 @@
 #include <CUnit/Basic.h>
-#include <test_unique_time.h>
-#include <test_validate_sensor.h>
-#include <test_sensor_fusion.h>
-#include <test_input_output.h>
-#include <test_stuck_sensor.h>
 
 int init_suite(void) {
     return 0;
@@ -11,7 +6,9 @@ int init_suite(void) {
 int clean_suite(void) {
     return 0;
 }
+void test_run_input_output(){
 
+}
 int main (void)// Main function
 {
     CU_pSuite pSuite=NULL;
