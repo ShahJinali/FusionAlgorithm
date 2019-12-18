@@ -38,9 +38,19 @@
 		>  make clean<br>
 		>  make<br>
 
+## Run the test
+
+* To run the test , build the project first.
+
+* Open the command prompt and redirect to the path of project.
+
+	*  Type the following commands to run the project.
+		> cd bin<br>
+		> TestFusedOuput
+
 ## Run the project
 
-* Tu run the project , build the project first.
+* To run the project , build the project first.
 
 * Open the command prompt and redirect to the path of project.
 
