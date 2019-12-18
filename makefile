@@ -2,8 +2,8 @@ $(shell mkdir -p bin)
 $(shell mkdir -p build)
 CC =gcc
 CFLAGS =-g -Wall
-INCLUDES=-I"include" -I"C:\cygwin64\usr\include"
-LFLAGS=-LC:\cygwin64\lib
+INCLUDES=-I"include" -I/usr/local/include
+LFLAGS=-L/usr/local/lib
 LIBS=-lgsl -lgslcblas -lm -lcunit
 TARGET=FusedOutput
 
