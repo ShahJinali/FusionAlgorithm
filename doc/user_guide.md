@@ -55,6 +55,7 @@
 * User can also provide the other arguments , but they are optional<br>
 
 * For instance, FusedOuput <input_file_path> <minimum_value> <maximum_value> optional[<time_interval> <p_value> <fault_tolerance>]
+
 **The order of command line arguments should not be change. It should follow the same order as specified in below section**.<br>
 
 # Outcome of Running software
