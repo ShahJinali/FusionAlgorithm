@@ -583,7 +583,6 @@ void test_run_sensor_fusion_algorithm(void)
     double fused_output_e,fused_output_a=54.133241;
     fused_output_e=sensor_fusion(p_sensor,no_sensor);
     CU_ASSERT(fabs(fused_output_e-fused_output_a)<0.001);
-
 }
 
 int main (void)// Main function
